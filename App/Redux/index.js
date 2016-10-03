@@ -5,7 +5,8 @@ import rootSaga from '../Sagas/'
 export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    home: require('./homeRedux').reducer
+    homePage: require('./homeRedux').reducer,
+    playlistPage: require('./playlistRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

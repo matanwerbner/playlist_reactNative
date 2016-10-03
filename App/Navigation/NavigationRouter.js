@@ -4,15 +4,19 @@ import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
 import I18n from 'react-native-i18n'
+import homeActions from '../Redux/homeRedux';
+import {connect} from 'react-redux'
 // screens identified by the router
 
-import homeScreen from '../modules/home';
+import PlScreen from '../modules/playlist'
+import HomeScreen from '../modules/home';
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
 
 class NavigationRouter extends Component {
   render() {
+    const {toggleSearch, searchEnabled} = this.props;
     return (
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
@@ -23,11 +27,18 @@ class NavigationRouter extends Component {
             leftButtonIconStyle={Styles.leftButton}
             rightButtonTextStyle={Styles.rightButton}>
             <Scene
-              initial
               key='homeScreen'
-              component={homeScreen}
+              component={HomeScreen}
               title={I18n.t("homePage_title")}
-              renderLeftButton={NavItems.hamburgerButton}/>
+              renderLeftButton={NavItems.hamburgerButton}
+              renderRightButton={ NavItems.searchButton.bind(toggleSearch) } />
+            <Scene
+              initial
+              key='PlScreen'
+              component={PlScreen}
+              title={I18n.t("playlistPage_title")}
+              renderLeftButton={NavItems.hamburgerButton}
+              />
           </Scene>
         </Scene>
       </Router>
@@ -35,7 +46,13 @@ class NavigationRouter extends Component {
   }
 }
 
-export default NavigationRouter
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleSearch: () => dispatch(homeActions.toggleSearch())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NavigationRouter)
 
 // import PresentationScreen from '../Containers/PresentationScreen' import
 // AllComponentsScreen from '../Containers/AllComponentsScreen' import
@@ -54,8 +71,8 @@ export default NavigationRouter
 // key='usageExamples' component={UsageExamplesScreen} title='Usage'
 // rightTitle='Example' onRight={() => window.alert('Example Pressed')} />
 // <Scene key='login' component={LoginScreen} title='Login' hideNavBar /> <Scene
-// key='listviewExample' component={ListviewExample} title='Listview Example'
-// /> <Scene key='listviewGridExample' component={ListviewGridExample}
+// key='listviewExample' component={ListviewExample} title='Listview Example' />
+// <Scene key='listviewGridExample' component={ListviewGridExample}
 // title='Listview Grid' /> <Scene key='listviewSectionsExample'
 // component={ListviewSectionsExample} title='Listview Sections' /> <Scene
 // key='mapviewExample' component={MapviewExample} title='Mapview Example' />

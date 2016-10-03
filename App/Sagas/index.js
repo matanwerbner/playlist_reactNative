@@ -9,13 +9,14 @@ import DebugSettings from '../Config/DebugSettings'
 // import { TemperatureTypes } from '../Redux/TemperatureRedux'
 // import { LoginTypes } from '../Redux/LoginRedux'
 import { HomeTypes } from '../Redux/homeRedux';
-
+import { PlTypes } from '../Redux/playlistRedux';
 /* ------------- Sagas ------------- */
 
 // import { startup } from './StartupSagas'
 // import { login } from './LoginSagas'
 // import { getTemperature } from './TemperatureSagas'
 import { getPlaylists  } from './homeSagas';
+import { getPlaylist } from './playlistSagas'
 
 /* ------------- API ------------- */
 
@@ -34,6 +35,7 @@ export default function * root () {
     // // some sagas receive extra parameters in addition to an action
     // takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api);
   
-      takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api)
+      takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
+      takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api)
   ]
 }

@@ -15,5 +15,12 @@ export default {
       ok: true,
       data: require('../Fixtures/playlists.json')
     }
+  },
+
+  getPlaylist: (id) => {
+    return {
+      ok: true,
+      data: require('../Fixtures/playlist.json')
+    }
   }
 }

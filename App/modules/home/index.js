@@ -12,29 +12,37 @@ import styles from './home.style';
 // I18n
 import I18n from 'react-native-i18n'
 
-class home extends React.Component {
+class Home extends React.Component {
 
   constructor(props) {
     super(props);
+    this._onFilterChanged = this._onFilterChanged.bind(this);
   }
 
   componentDidMount() {
     this.props.getPlaylists();
   }
 
+  _onFilterChanged(newFilter) {
+    debugger;
+  }
+
   render () {
-    const {playlists} = this.props;
+    const {playlists, filter, search} = this.props;
     return (
       <View style={styles.mainContainer}>
-          <PlListContainer items={playlists} />
+          <PlListContainer items={playlists} 
+                           search={search}
+                           onFilterChanged={this._onFilterChanged}   />
       </View>
     )
   }
 }
 
-const mapStateToProps = ({ home }) => {
+const mapStateToProps = ({ homePage }) => {
   return {
-     playlists: home.playlists 
+     playlists: homePage.playlists,
+     search: homePage.search 
   }
 }
 
@@ -44,4 +52,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
