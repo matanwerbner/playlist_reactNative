@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import homeActions from '../../Redux/homeRedux';
-
+import PlListContainer from './PlListContainer';
 // Styles
-import styles from './homeStyle';
+import styles from './home.style';
 
 // I18n
 import I18n from 'react-native-i18n'
@@ -26,15 +26,7 @@ class home extends React.Component {
     const {playlists} = this.props;
     return (
       <View style={styles.mainContainer}>
-        <ScrollView style={styles.container}>
-          <View style={styles.section} behavior='position'>
-          </View>
-          { 
-            playlists ?
-              <View><Text>{`${playlists.length} playlists`}</Text></View> :
-              <View><Text>No Playlists</Text></View>
-          }
-        </ScrollView>
+          <PlListContainer items={playlists} />
       </View>
     )
   }

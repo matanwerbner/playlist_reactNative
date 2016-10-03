@@ -1,1 +1,11 @@
-{}
+{
+     "homePage_title": "פלייליסט",
+     "PlListItem": {
+         "views": "צפיות",
+         "grade": "דירוג"
+     },
+     "genres": {
+         "rock": "רוק",
+         "mizrachit": "מיזרחית"
+     }
+}

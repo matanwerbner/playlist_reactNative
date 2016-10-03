@@ -4,8 +4,10 @@ import '../I18n/I18n' // keep before root container
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import applyConfigSettings from '../Config';
+import { I18nManager } from 'react-native';
 
 // Apply config overrides
+I18nManager.forceRTL(true);
 applyConfigSettings()
 // create our store
 const store = createStore();
