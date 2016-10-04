@@ -36,6 +36,7 @@
     "react-native-maps": "^0.8.2",
     "react-native-router-flux": "^3.35.0",
     "react-native-vector-icons": "^2.1.0",
+    "react-native-youtube": "git+https://github.com/inProgress-team/react-native-youtube.git",
     "react-redux": "^4.4.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.4.0",

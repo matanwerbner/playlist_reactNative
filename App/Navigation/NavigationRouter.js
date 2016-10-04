@@ -19,7 +19,6 @@ class NavigationRouter extends Component {
     const {toggleSearch, searchEnabled} = this.props;
     return (
       <Router>
-        <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene
             key='drawerChildrenWrapper'
             navigationBarStyle={Styles.navBar}
@@ -40,7 +39,6 @@ class NavigationRouter extends Component {
               renderLeftButton={NavItems.hamburgerButton}
               />
           </Scene>
-        </Scene>
       </Router>
     )
   }

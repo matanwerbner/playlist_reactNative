@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics} from '../Themes'
 
 const openDrawer = () => {
-  NavigationActions.refresh({key: 'drawer', open: true})
+  //NavigationActions.refresh({key: 'drawer', open: true})
 }
 
 export default {

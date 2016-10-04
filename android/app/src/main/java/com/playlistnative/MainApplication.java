@@ -29,12 +29,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeYouTube(),
             new VectorIconsPackage(),
             new MapsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
-            new ReactNativeConfigPackage()
+            new ReactNativeConfigPackage(),
+            new ReactNativeYouTube()
       );
     }
   };
