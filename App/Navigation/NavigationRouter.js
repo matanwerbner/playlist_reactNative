@@ -8,8 +8,8 @@ import homeActions from '../Redux/homeRedux';
 import {connect} from 'react-redux'
 // screens identified by the router
 
-import PlScreen from '../modules/playlist'
-import HomeScreen from '../modules/home';
+import PlScreen from '../modules/playlistPage'
+import HomeScreen from '../modules/homePage';
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/

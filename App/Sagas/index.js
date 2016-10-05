@@ -16,7 +16,7 @@ import { PlTypes } from '../Redux/playlistRedux';
 // import { login } from './LoginSagas'
 // import { getTemperature } from './TemperatureSagas'
 import { getPlaylists  } from './homeSagas';
-import { getPlaylist } from './playlistSagas'
+import { getPlaylist, setPlayingItemRequest } from './playlistSagas'
 
 /* ------------- API ------------- */
 
@@ -36,6 +36,7 @@ export default function * root () {
     // takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api);
   
       takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
-      takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api)
+      takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
+      takeLatest(PlTypes.SET_PLAY_ITEM_REQUEST, setPlayingItemRequest)
   ]
 }
