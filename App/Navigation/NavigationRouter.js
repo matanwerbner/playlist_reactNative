@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Scene, Router} from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
-import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
 import I18n from 'react-native-i18n'
 import homeActions from '../Redux/homeRedux';
@@ -26,13 +25,14 @@ class NavigationRouter extends Component {
             leftButtonIconStyle={Styles.leftButton}
             rightButtonTextStyle={Styles.rightButton}>
             <Scene
+
+              initial
               key='homeScreen'
               component={HomeScreen}
               title={I18n.t("homePage_title")}
               renderLeftButton={NavItems.hamburgerButton}
               renderRightButton={ NavItems.searchButton.bind(toggleSearch) } />
             <Scene
-              initial
               key='PlScreen'
               component={PlScreen}
               title={I18n.t("playlistPage_title")}

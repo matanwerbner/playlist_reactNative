@@ -6,5 +6,8 @@ export default {
         alignItems: "center",
         flex: 1
     },
+    itemsContainer: {
+        marginTop: 10
+    },
      ...ApplicationStyles.screen
 }
