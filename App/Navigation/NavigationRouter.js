@@ -6,7 +6,8 @@ import homeActions from '../Redux/homeRedux';
 import {connect} from 'react-redux'
 import FacebookTabBar from './FacebookTabBar';
 // screens identified by the router
-import {StyleSheet, Text, ScrollView} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import PlScreen from '../modules/playlistPage'
 import MyGroups from '../modules/homePage/myGroups';
 import AddTrack from '../modules/homePage/addTrack';
@@ -20,7 +21,7 @@ import styles from './Styles/NavigationRouter.styles.js'
 const Tabs = {
   home: {
     icon: "update",
-    text: "RECENT"
+    text: "RECENT UPDATES"
   },
   groups: {
     icon: "group",
@@ -28,38 +29,44 @@ const Tabs = {
   },
   add: {
     icon: "add",
-    text: "POST TRACK"
+    text: "POST A TRACK"
   }
 }
 
+const _getHomePage = () => <ScrollableTabView
+  initialPage={2}
+  tabBarPosition="bottom"
+  renderTabBar={() => <FacebookTabBar/>}>
+  <RecentActivity tabLabel={Tabs.home}/>
+  <MyGroups tabLabel={Tabs.groups}/>
+  <AddTrack tabLabel={Tabs.add}/>
+</ScrollableTabView>
+
+const _renderRightButton = () => {
+  return <View style={{ padding: 10, backgroundColor: 'green'}}><Icon name="add" /></View>
+}
+
 export default() => {
-  const _getHomePage = () => <ScrollableTabView
-    initialPage={0}
-    tabBarPosition="bottom"
-    renderTabBar={() => <FacebookTabBar/>}>
-    <RecentActivity tabLabel={Tabs.home}/>
-    <MyGroups tabLabel={Tabs.groups}/>
-    <AddTrack tabLabel={Tabs.add}/>
-  </ScrollableTabView>
+
   return (
     <Router createReducer={reducerCreate}>
       <Scene key="root">
         <Scene
-        duration={0}
+          duration={0}
           key="home"
-          sceneStyle={ styles.mainContainer }
+          sceneStyle={styles.mainContainer}
           component={_getHomePage}
           titleStyle={styles.navBar.title}
           navigationBarStyle={styles.navBar.container}
           initial
           title="HOME"/>
-        <Scene 
-        key="playlist"
-        duration={0}
-        getTitle={(state) => state.groupName} 
-        component={PlScreen} 
-        titleStyle={styles.navBar.title}
-        navigationBarStyle={styles.navBar.container}/>
+        <Scene
+          key="playlist"
+          duration={0}
+          getTitle={(state) => state.groupName}
+          component={PlScreen}
+          titleStyle={styles.navBar.title}
+          navigationBarStyle={styles.navBar.container}/>
       </Scene>
     </Router>
   )

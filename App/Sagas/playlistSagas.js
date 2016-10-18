@@ -1,9 +1,7 @@
 import {call, put} from 'redux-saga/effects'
 import PlActions from '../Redux/playlistRedux';
 
-function *sleep(time) {
-  yield new Promise(resolve => setTimeout(resolve, time));
-}
+
 
 // attempts to login
 export function * getPlaylist(api, action) {
