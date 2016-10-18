@@ -5,19 +5,15 @@ import Immutable from 'seamless-immutable'
 export const INITIAL_STATE = Immutable({
   fetching: null,
   error: null,
-  playlist: null,
-  playingItemIdx: null
+  playlist: null
 })
 
 
 const { Types, Creators } = createActions({
-  playlistRequest: ['PlId'],
+  playlistRequest: ['groupId'],
   playlistSuccess: ['data'],
   playlistFailed: ['error'],
-  setPlayItemRequest: ['PiIdx'],
-  setPlayItemSuccess: ['PiIdx'],
-  setPlayItemFailed: [],
-  finishedPlaying: null
+  resetPlaylist: null
 });
 
 export const PlTypes = Types
@@ -28,28 +24,18 @@ export const request = (state) =>
 
 export const success = (state, action) => {
   const playlist = action.data;
-  return state.merge({ fetching: false, error: null, playlist, playingItemIdx: 0 })
+  return state.merge({ fetching: false, error: null, playlist })
 }
 
 // failed to get the temperature
 export const failure = state =>
   state.merge({ fetching: false, error: true, playlist: null })
 
-export const finishedPlaying = (state, action) => 
-  state.merge({ playingItemIdx : 0 })
-
-export const setPlayItemRequest = (state,action) => 
-  state.merge({ playingItemIdx: null })
-
-  export const setPlayItemSuccess = (state, action) => {
-    return state.merge({ playingItemIdx : action.PiIdx })
-  }
+export const reset = state => state.merge({ playlist: null })
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.PLAYLIST_REQUEST]: request,
   [Types.PLAYLIST_SUCCESS]: success,
   [Types.PLAYLIST_FAILED]: failure,
-  [Types.SET_PLAY_ITEM_REQUEST]: setPlayItemRequest,
-  [Types.SET_PLAY_ITEM_SUCCESS]: setPlayItemSuccess,
-  [Types.FINISHED_PLAYING]: finishedPlaying
+  [Types.resetPlaylist]: reset
 })

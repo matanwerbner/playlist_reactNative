@@ -7,8 +7,7 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: Colors.background
+    justifyContent: 'center'
   },
   welcome: {
     fontSize: 20,

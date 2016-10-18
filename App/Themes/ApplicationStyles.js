@@ -9,8 +9,7 @@ const ApplicationStyles = {
   screen: {
     mainContainer: {
       flex: 1,
-      marginTop: Metrics.navBarHeight,
-      backgroundColor: Colors.coal
+      marginTop: Metrics.navBarHeight
     },
     backgroundImage: {
       position: 'absolute',
@@ -32,13 +31,13 @@ const ApplicationStyles = {
       borderBottomWidth: 1
     },
     sectionText: {
-      color: Colors.snow,
+      color: Colors.coal,
       marginVertical: Metrics.smallMargin,
       textAlign: 'center',
       fontWeight: 'bold'
     },
     subtitle: {
-      color: Colors.snow,
+      color: Colors.coal,
       padding: Metrics.smallMargin,
       marginBottom: Metrics.smallMargin,
       marginHorizontal: Metrics.smallMargin

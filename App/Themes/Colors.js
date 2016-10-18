@@ -18,7 +18,12 @@ const colors = {
   ember: 'rgba(164, 0, 48, 0.5)',
   fire: '#e73536',
   drawer: 'rgba(30, 30, 29, 0.95)',
-  peach: '#FFE5B4'
+  peach: '#FFE5B4',
+  blue: '#39c',
+  success: {
+    text: '#4F8A10',
+    background: '#DFF2BF'
+  }
 }
 
 export default colors

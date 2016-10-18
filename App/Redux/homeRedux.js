@@ -5,8 +5,8 @@ import Immutable from 'seamless-immutable'
 export const INITIAL_STATE = Immutable({
   fetching: null,
   error: null,
-  playlists: null,
-  search: {
+  recentActivity: null,
+  filter: {
     enabled: false,
     value: null
   }
@@ -23,23 +23,23 @@ export const HomeTypes = Types
 export default Creators;
 
 export const request = (state) =>
-  state.merge({ fetching: true, playlists: null })
+  state.merge({ fetching: true, recent: null })
 
 export const success = (state, action) => {
-  const { playlists } = action.data;
-  return state.merge({ fetching: false, error: null, playlists })
+  const { recentActivity } = action.data;
+  return state.merge({ fetching: false, error: null, recentActivity })
 }
 
 // failed to get the temperature
 export const failure = state =>
-  state.merge({ fetching: false, error: true, playlists: null })
+  state.merge({ fetching: false, error: true, recentActivity: null })
 
-export const toggleSearch = (state, action) =>
-  state.merge({ search: { enabled: !state.search.enabled, value: null} })
+export const toggleFilter = (state, action) =>
+  state.merge({ filter: { enabled: !state.search.enabled, value: null} })
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.PLAYLISTS_REQUEST]: request,
   [Types.PLAYLISTS_SUCCESS]: success,
   [Types.PLAYLISTS_FAILED]: failure,
-  [Types.TOGGLE_SEARCH]: toggleSearch
+  [Types.TOGGLE_SEARCH]: toggleFilter
 })

@@ -6,7 +6,8 @@ export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
     homePage: require('./homeRedux').reducer,
-    playlistPage: require('./playlistRedux').reducer
+    playlistPage: require('./playlistRedux').reducer,
+    myGroups: require('./myGroupsRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

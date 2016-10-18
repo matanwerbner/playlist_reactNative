@@ -10,6 +10,7 @@ import DebugSettings from '../Config/DebugSettings'
 // import { LoginTypes } from '../Redux/LoginRedux'
 import { HomeTypes } from '../Redux/homeRedux';
 import { PlTypes } from '../Redux/playlistRedux';
+import { MyGroupsTypes } from '../Redux/myGroupsRedux';
 /* ------------- Sagas ------------- */
 
 // import { startup } from './StartupSagas'
@@ -17,6 +18,7 @@ import { PlTypes } from '../Redux/playlistRedux';
 // import { getTemperature } from './TemperatureSagas'
 import { getPlaylists  } from './homeSagas';
 import { getPlaylist, setPlayingItemRequest } from './playlistSagas'
+import { fetchMyGroups } from './myGroupsSagas';
 
 /* ------------- API ------------- */
 
@@ -37,6 +39,6 @@ export default function * root () {
   
       takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
       takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
-      takeLatest(PlTypes.SET_PLAY_ITEM_REQUEST, setPlayingItemRequest)
+      takeLatest(MyGroupsTypes.FETCH_MY_GROUPS_REQUEST, fetchMyGroups, api)
   ]
 }

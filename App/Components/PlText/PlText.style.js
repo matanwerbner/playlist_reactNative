@@ -1,9 +1,6 @@
-import {ApplicationStyles, Metrics, Colors} from '../../Themes';
+import {ApplicationStyles, Metrics, Colors, Fonts} from '../../Themes';
 
 
 export default {
-    textStyle: {
-        color: Colors.snow,
-        textAlign: 'left'
-    }
+    textStyle: Fonts.style.description
 }

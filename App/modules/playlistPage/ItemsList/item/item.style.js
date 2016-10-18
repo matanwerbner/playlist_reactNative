@@ -6,15 +6,10 @@ const commonItem = {
 
 export default {
     textContainer: {
-        backgroundColor: Colors.charcoal,
         flexDirection: 'row',
-        paddingVertical: 7,
-        paddingHorizontal: 10,
-        borderBottomColor: Colors.frost,
-        borderBottomWidth: 1
     },
     item: {
-        color: Colors.snow,
+        color: Colors.coal,
         ...commonItem
     },
     activeItem: {

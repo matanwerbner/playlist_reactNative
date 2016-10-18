@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './PlText.style';
-import { Text } from 'react-native';
+import { Text } from 'native-base';
 export default ({children, style}) => {
-    return <Text style={ Object.assign({}, styles.textStyle, style) }>{ children }</Text>
+    return <Text style={ Object.assign({}, styles.textStyle, style) }>
+        { children }
+    </Text>
 }

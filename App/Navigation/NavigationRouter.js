@@ -1,79 +1,75 @@
 import React, {Component} from 'react'
-import {Scene, Router} from 'react-native-router-flux'
-import Styles from './Styles/NavigationContainerStyle'
-import NavItems from './NavItems'
+import {Scene, Router, Reducer} from 'react-native-router-flux'
+
 import I18n from 'react-native-i18n'
 import homeActions from '../Redux/homeRedux';
 import {connect} from 'react-redux'
+import FacebookTabBar from './FacebookTabBar';
 // screens identified by the router
-
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import PlScreen from '../modules/playlistPage'
-import HomeScreen from '../modules/homePage';
+import MyGroups from '../modules/homePage/myGroups';
+import AddTrack from '../modules/homePage/addTrack';
+import RecentActivity from '../modules/homePage/recentActivity';
+import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
+import styles from './Styles/NavigationRouter.styles.js'
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
 
-class NavigationRouter extends Component {
-  render() {
-    const {toggleSearch, searchEnabled} = this.props;
-    return (
-      <Router>
-          <Scene
-            key='drawerChildrenWrapper'
-            navigationBarStyle={Styles.navBar}
-            titleStyle={Styles.title}
-            leftButtonIconStyle={Styles.leftButton}
-            rightButtonTextStyle={Styles.rightButton}>
-            <Scene
-
-              initial
-              key='homeScreen'
-              component={HomeScreen}
-              title={I18n.t("homePage_title")}
-              renderLeftButton={NavItems.hamburgerButton}
-              renderRightButton={ NavItems.searchButton.bind(toggleSearch) } />
-            <Scene
-              key='PlScreen'
-              component={PlScreen}
-              title={I18n.t("playlistPage_title")}
-              renderLeftButton={NavItems.hamburgerButton}
-              />
-          </Scene>
-      </Router>
-    )
+const Tabs = {
+  home: {
+    icon: "update",
+    text: "RECENT"
+  },
+  groups: {
+    icon: "group",
+    text: "MY GROUPS"
+  },
+  add: {
+    icon: "add",
+    text: "POST TRACK"
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleSearch: () => dispatch(homeActions.toggleSearch())
-  }
+export default() => {
+  const _getHomePage = () => <ScrollableTabView
+    initialPage={0}
+    tabBarPosition="bottom"
+    renderTabBar={() => <FacebookTabBar/>}>
+    <RecentActivity tabLabel={Tabs.home}/>
+    <MyGroups tabLabel={Tabs.groups}/>
+    <AddTrack tabLabel={Tabs.add}/>
+  </ScrollableTabView>
+  return (
+    <Router createReducer={reducerCreate}>
+      <Scene key="root">
+        <Scene
+        duration={0}
+          key="home"
+          sceneStyle={ styles.mainContainer }
+          component={_getHomePage}
+          titleStyle={styles.navBar.title}
+          navigationBarStyle={styles.navBar.container}
+          initial
+          title="HOME"/>
+        <Scene 
+        key="playlist"
+        duration={0}
+        getTitle={(state) => state.groupName} 
+        component={PlScreen} 
+        titleStyle={styles.navBar.title}
+        navigationBarStyle={styles.navBar.container}/>
+      </Scene>
+    </Router>
+  )
+
 }
 
-export default connect(null, mapDispatchToProps)(NavigationRouter)
-
-// import PresentationScreen from '../Containers/PresentationScreen' import
-// AllComponentsScreen from '../Containers/AllComponentsScreen' import
-// UsageExamplesScreen from '../Containers/UsageExamplesScreen' import
-// LoginScreen from '../Containers/LoginScreen' import ListviewExample from
-// '../Containers/ListviewExample' import ListviewGridExample from
-// '../Containers/ListviewGridExample' import ListviewSectionsExample from
-// '../Containers/ListviewSectionsExample' import MapviewExample from
-// '../Containers/MapviewExample' import APITestingScreen from
-// '../Containers/APITestingScreen' import ThemeScreen from
-// '../Containers/ThemeScreen' import DeviceInfoScreen from
-// '../Containers/DeviceInfoScreen' <Scene key='presentationScreen'
-// component={PresentationScreen} title='Ignite'
-// renderLeftButton={NavItems.hamburgerButton} /> <Scene key='componentExamples'
-// component={AllComponentsScreen} title='Components' /> <Scene
-// key='usageExamples' component={UsageExamplesScreen} title='Usage'
-// rightTitle='Example' onRight={() => window.alert('Example Pressed')} />
-// <Scene key='login' component={LoginScreen} title='Login' hideNavBar /> <Scene
-// key='listviewExample' component={ListviewExample} title='Listview Example' />
-// <Scene key='listviewGridExample' component={ListviewGridExample}
-// title='Listview Grid' /> <Scene key='listviewSectionsExample'
-// component={ListviewSectionsExample} title='Listview Sections' /> <Scene
-// key='mapviewExample' component={MapviewExample} title='Mapview Example' />
-// <Scene key='apiTesting' component={APITestingScreen} title='API Testing' />
-// <Scene key='theme' component={ThemeScreen} title='Theme' /> <Scene
-// key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
+const reducerCreate = params => {
+  const defaultReducer = new Reducer(params);
+  return (state, action) => {
+    console.log('ACTION:', action);
+    return defaultReducer(state, action);
+  };
+};

@@ -1,26 +1,23 @@
 export default {
-  // Functions return fixtures
-  getCity: (city) => {
-    // This fixture only supports Boise or else returns toronto
-    const boiseData = require('../Fixtures/boise.json')
-    const torontoData = require('../Fixtures/toronto.json')
+  
+  getRecentActivity: () => {
     return {
       ok: true,
-      data: city.toLowerCase() === 'boise' ? boiseData : torontoData
+      data: require('../Fixtures/recentActivity.js')
     }
   },
 
-  getPlaylists: () => {
+  getPlaylist: (groupId) => {
     return {
       ok: true,
-      data: require('../Fixtures/playlists.json')
+      data: require('../Fixtures/playlist.js')(groupId)
     }
   },
 
-  getPlaylist: (id) => {
+  getMyGroups: () => {
     return {
       ok: true,
-      data: require('../Fixtures/playlist.json')
+      data: require('../Fixtures/myGroups.js')
     }
   }
 }

@@ -7,7 +7,7 @@ import applyConfigSettings from '../Config';
 import { I18nManager } from 'react-native';
 
 // Apply config overrides
-I18nManager.forceRTL(true);
+I18nManager.forceRTL(false);
 applyConfigSettings()
 // create our store
 const store = createStore();

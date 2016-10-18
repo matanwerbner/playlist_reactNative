@@ -9,5 +9,8 @@ export default {
     itemsContainer: {
         marginTop: 10
     },
+    videoContainer: {
+        height: 250
+    },
      ...ApplicationStyles.screen
 }
