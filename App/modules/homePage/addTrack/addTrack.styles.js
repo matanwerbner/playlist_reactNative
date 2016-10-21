@@ -3,10 +3,15 @@ import {ApplicationStyles, Metrics, Colors} from '../../../Themes/'
 
 export default StyleSheet.create({
   addTrackContainer: {
-    padding: 20
+    paddingVertical: 20
   },
   searchTxt: {
+    height: 40,
+    flex: 1
+  },
+  searchContainer: {
     flex: 1,
-    height: 40
+    marginBottom: 20,
+    flexDirection: 'row'
   }
 })

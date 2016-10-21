@@ -8,7 +8,7 @@ const _makeActivity = (id) => {
         track: {
             title: "Bert yountch stuff",
             id: 9,
-            thumbnail: "https://facebook.github.io/react/img/logo_og.png",
+            thumbnail: "https://i.ytimg.com/vi/zG2TEQvNwJU/mqdefault.jpg",
         },
         group: {
             name: "hod hasharon coolShit",

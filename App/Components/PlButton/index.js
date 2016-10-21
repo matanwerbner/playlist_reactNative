@@ -3,20 +3,30 @@ import Button from 'apsl-react-native-button'
 import styles from './PlButton.style';
 
 const getStyle = (type) => {
-    switch(type) {
-        case 'success' : return styles.btnSuccess
+    switch (type) {
+        case 'success':
+            return styles.btnSuccess
     }
     return {};
 }
 
-export default(props) => {
-    const btnStyle = getStyle(props.type);
+export default({ 
+    onPress, 
+    btnStyle, 
+    textStyle, 
+    children, 
+    type,
+    disabled = false 
+}) => {
+    const btnStyleForType = getStyle(type);
 
     return (
-        <Button onPress={props.onPress}
-                style={ btnStyle.button } 
-                textStyle={btnStyle.text}>
-            {props.children}
+        <Button
+            activeOpacity={ 0.5 }
+            onPress={ (!disabled) && onPress}
+            style={ {...styles.button, ...btnStyle, ...btnStyleForType.button}}
+            textStyle={{ ...styles.text, ...textStyle, ...btnStyleForType.text}}>
+            {children}
         </Button>
     )
 }

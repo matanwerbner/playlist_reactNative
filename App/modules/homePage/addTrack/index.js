@@ -1,58 +1,72 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, TextInput} from 'react-native';
 import styles from './addTrack.styles';
+import PlIconButton from '../../../Components/PlIconButton';
 import AddTrackActions from '../../../Redux/addTrackRedux';
-import {connect } from 'react-redux';
-var _ = require('lodash')
+import PlSpinner from '../../../Components/PlSpinner';
+import {connect} from 'react-redux';
+import {get} from 'lodash';
+import SuggestionList from './suggestionList';
 const DEBOUNCE_TIME = 700;
+const PLACEHOLDER = 'hi!';
 
 class AddTrackForm extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this._searchTxtChanged = this._searchTxtChanged.bind(this);
+        this._searchTxtChanged = this
+            ._searchTxtChanged
+            .bind(this);
+        this._searchClicked = this._searchClicked.bind(this);
         this.state = {
-            text: 'Hi!'
+            text: ''
         }
-        this.fireEvents = _.debounce(function(){
-            debugger;
-        }, 250, { 'maxWait': 1000 });
     }
 
     componentWillMount() {
-       this.handleSearchDebounced = _.debounce(function () {
-           this.props.fetchSuggestionsRequest.apply(this, [this.state.text]);
-       }.bind(this), DEBOUNCE_TIME);
     }
 
+    _searchClicked() {
+
+        const {fetchSuggestionsRequest} = this.props;
+        fetchSuggestionsRequest(this.state.text);
+    }
 
     _searchTxtChanged(newText) {
-        this.setState({
-            text: newText
-        });
-        this.handleSearchDebounced();
+        this.setState({text: newText});
     }
 
     render() {
-        const { text } = this.state;
-        const { data } = this.props;
+        const {text} = this.state;
+        const {matches, isFetching} = this.props;
         return (
-            <View style={ styles.addTrackContainer}>
-                <TextInput
-                    style={styles.searchTxt}
-                    onChangeText={this._searchTxtChanged}
-                    value={ text }/>
-                    <Text>
-                { data ? data.items.length : 'no items' }
-                </Text>
+            <View style={styles.addTrackContainer}>
+                <View style={ styles.searchContainer}>
+                    <TextInput
+                        placeholder={ PLACEHOLDER }
+                        style={styles.searchTxt}
+                        onChangeText={this._searchTxtChanged}
+                        value={text}/>
+                    <PlIconButton 
+                        name="search"
+                        disabled={ isFetching }
+                        onPress={ this._searchClicked } />
+                </View>
+                { isFetching && <PlSpinner /> }
+                <View style={ styles.matchesContainer}>
+                { 
+                    matches && !isFetching &&
+                    <SuggestionList items={ matches } />
+                }
+                </View>
             </View>
         )
     }
 }
 
-const mapStateToThis = ({ addTrack }) => {
+const mapStateToThis = ({addTrack}) => {
     return {
-        text: addTrack.text,
-        data: addTrack.data
+        isFetching: addTrack.fetching, 
+        matches: get(addTrack, "data.items")
     }
 }
 

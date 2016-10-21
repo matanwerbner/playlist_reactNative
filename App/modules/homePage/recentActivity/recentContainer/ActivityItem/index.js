@@ -9,16 +9,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default({item, onPress}) => {
     return (
         <View style={styles.itemContainer}>
-            <View style={styles.textContainer}>
-                <View style={styles.titleContainer}>
-                    <PlText style={styles.userName}>
-                        {`${item.user.name}: `}</PlText>
-                    <PlText style={styles.trackTitle}>{item.track.title}</PlText>
-                </View>
-                <View style={styles.subTitleContainer}>
-                    <Icon name="arrow-forward"/>
-                    <PlText style={styles.groupName}>{item.group.name}</PlText>
-                </View>
+            <View style={styles.titleContainer}>
+                <PlText style={styles.userName}>
+                    {`${item.user.name}: `}</PlText>
+                <PlText style={styles.trackTitle}>{item.track.title}</PlText>
             </View>
             <View style={styles.imageContainer}>
                 <Image
@@ -26,6 +20,14 @@ export default({item, onPress}) => {
                     source={{
                     uri: item.track.thumbnail
                 }}/>
+                <View style={ styles.playArrowContainer}>
+                <Icon style={styles.playArrow} size={ 35 } name="play-arrow"/>
+                </View>
+            </View>
+
+            <View style={styles.subTitleContainer}>
+                <Icon style={styles.arrowIcon} name="arrow-forward"/>
+                <PlText style={styles.groupName}>{item.group.name}</PlText>
             </View>
         </View>
     )
