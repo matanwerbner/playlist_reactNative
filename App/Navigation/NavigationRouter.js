@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Scene, Router, Reducer} from 'react-native-router-flux'
+import React , { Component } from 'react'
+import {Scene, Router, Reducer, Actions} from 'react-native-router-flux'
 
 import I18n from 'react-native-i18n'
 import homeActions from '../Redux/homeRedux';
@@ -17,6 +17,8 @@ import styles from './Styles/NavigationRouter.styles.js'
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
+import SharePage from '../modules/sharePage';
+import ShareMenu from 'react-native-share-menu';
 
 const Tabs = {
   home: {
@@ -43,35 +45,55 @@ const _getHomePage = () => <ScrollableTabView
 </ScrollableTabView>
 
 const _renderRightButton = () => {
-  return <View style={{ padding: 10, backgroundColor: 'green'}}><Icon name="add" /></View>
+  return <View style={{
+    padding: 10,
+    backgroundColor: 'green'
+  }}><Icon name="add"/></View>
 }
 
-export default() => {
+class _Router extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <Router createReducer={reducerCreate}>
-      <Scene key="root">
-        <Scene
-          duration={0}
-          key="home"
-          sceneStyle={styles.mainContainer}
-          component={_getHomePage}
-          titleStyle={styles.navBar.title}
-          navigationBarStyle={styles.navBar.container}
-          initial
-          title="HOME"/>
-        <Scene
-          key="playlist"
-          duration={0}
-          getTitle={(state) => state.groupName}
-          component={PlScreen}
-          titleStyle={styles.navBar.title}
-          navigationBarStyle={styles.navBar.container}/>
-      </Scene>
-    </Router>
-  )
+  componentWillMount() {
+    ShareMenu.getSharedText((text) => {
+      if (text && text.length) {
+        Actions.incomingShare({type: 'reset', text});
+      }
+    })
+  }
 
+  render() {
+    return (
+      <Router createReducer={reducerCreate}>
+        <Scene key="root">
+          <Scene
+            duration={0}
+            key="home"
+            sceneStyle={styles.mainContainer}
+            component={_getHomePage}
+            titleStyle={styles.navBar.title}
+            navigationBarStyle={styles.navBar.container}
+            title="HOME"/>
+          <Scene
+            key="playlist"
+            duration={0}
+            getTitle={(state) => state.groupName}
+            component={PlScreen}
+            initial
+            titleStyle={styles.navBar.title}
+            navigationBarStyle={styles.navBar.container}/>
+          <Scene
+            key="incomingShare"
+            component={ SharePage }  />
+        </Scene>
+      </Router>
+    )
+  }
 }
+
+export default _Router;
 
 const reducerCreate = params => {
   const defaultReducer = new Reducer(params);

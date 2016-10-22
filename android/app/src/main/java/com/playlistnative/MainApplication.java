@@ -11,6 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import java.util.Arrays;
 import java.util.List;
+import com.meedan.ShareMenuPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -24,7 +25,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new ReactNativeYouTube()
+          new ReactNativeYouTube(),
+          new ShareMenuPackage()
       );
     }
   };

@@ -42,6 +42,7 @@
     "react-native-i18n": "^0.1.1",
     "react-native-maps": "^0.8.2",
     "react-native-router-flux": "^3.35.0",
+    "react-native-share-menu": "^1.1.5",
     "react-native-vector-icons": "^2.1.0",
     "react-native-youtube": "git+https://github.com/inProgress-team/react-native-youtube.git",
     "react-redux": "^4.4.2",

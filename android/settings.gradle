@@ -3,3 +3,5 @@ rootProject.name = 'playlistNative'
 include ':app'
 include ':RCTYouTube', ':app'
 project(':RCTYouTube').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-youtube/RCTYouTube')
+include ':react-native-share-menu', ':app'
+project(':react-native-share-menu').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-share-menu/android')
