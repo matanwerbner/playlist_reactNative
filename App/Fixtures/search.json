@@ -1,47 +1,14 @@
-module.exports = (groupId) => ({
-    "id": groupId,
-    "name": "hiii",
-    "items": [{
-        "type": "youtube",
-        "id": 1,
-        "track": {
-            "kind": "youtube#searchResult",
-            "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/U0MhmW5mgkuFnbhs4ruQpCxg-JQ\"",
-            "id": {
-                "kind": "youtube#video",
-                "videoId": "42Y4mUyWmM0"
-            },
-            "snippet": {
-                "publishedAt": "2016-09-23T21:25:46.000Z",
-                "channelId": "UCpuvu8mrEO4jxjT6sRwE8tg",
-                "title": "B.o.B - War Witch - Official Video",
-                "description": "A.I.R. mixtape Get it here on http://www.datpiff.com/BoB-AIR-Art-Imitates-Reality-mixtape.800528.html and follow B.o.B Instagram @Bob Twitter @bobatl AIR is ...",
-                "thumbnails": {
-                    "default": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/default.jpg",
-                        "width": 120,
-                        "height": 90
-                    },
-                    "medium": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/mqdefault.jpg",
-                        "width": 320,
-                        "height": 180
-                    },
-                    "high": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/hqdefault.jpg",
-                        "width": 480,
-                        "height": 360
-                    }
-                },
-                "channelTitle": "B.o.B",
-                "liveBroadcastContent": "none"
-            }
-        }
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/ioepcJZeDyRFewWLksaXf0LX2fk\"",
+    "nextPageToken": "CAUQAA",
+    "regionCode": "IL",
+    "pageInfo": {
+        "totalResults": 1000000,
+        "resultsPerPage": 5
     },
-    {
-        "type": "youtube",
-        "id": 2,
-        "track": {
+    "items": [
+        {
             "kind": "youtube#searchResult",
             "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/U0MhmW5mgkuFnbhs4ruQpCxg-JQ\"",
             "id": {
@@ -73,36 +40,98 @@ module.exports = (groupId) => ({
                 "channelTitle": "B.o.B",
                 "liveBroadcastContent": "none"
             }
-        }
-    },
-    {
-        "type": "youtube",
-        "id": 3,
-        "track": {
+        },
+        {
             "kind": "youtube#searchResult",
-            "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/U0MhmW5mgkuFnbhs4ruQpCxg-JQ\"",
+            "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/ZM3SeFXD3NqQ2RxTSLq5FjuB8U0\"",
             "id": {
                 "kind": "youtube#video",
-                "videoId": "42Y4mUyWmM0"
+                "videoId": "pgXJD1U0OG0"
             },
             "snippet": {
-                "publishedAt": "2016-09-23T21:25:46.000Z",
-                "channelId": "UCpuvu8mrEO4jxjT6sRwE8tg",
-                "title": "B.o.B - War Witch - Official Video",
-                "description": "A.I.R. mixtape Get it here on http://www.datpiff.com/BoB-AIR-Art-Imitates-Reality-mixtape.800528.html and follow B.o.B Instagram @Bob Twitter @bobatl AIR is ...",
+                "publishedAt": "2016-02-18T15:50:30.000Z",
+                "channelId": "UCeVTeLnKQ17H1hoT3kVd1iQ",
+                "title": "Bob, chuyến tàu | học trái cây với bob | bài hát của trẻ em biên dịch trong tiếng việt",
+                "description": "bob tàu hỏa bài hát trái cây cho trẻ em học và hát. bộ sưu tập các bài hát tàu hỏa bob cho trẻ mẫu giáo ở việt để học tập và vui chơi.",
                 "thumbnails": {
                     "default": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/default.jpg",
+                        "url": "https://i.ytimg.com/vi/pgXJD1U0OG0/default.jpg",
                         "width": 120,
                         "height": 90
                     },
                     "medium": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/mqdefault.jpg",
+                        "url": "https://i.ytimg.com/vi/pgXJD1U0OG0/mqdefault.jpg",
                         "width": 320,
                         "height": 180
                     },
                     "high": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/hqdefault.jpg",
+                        "url": "https://i.ytimg.com/vi/pgXJD1U0OG0/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Kids Tv Vietnam",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/cNAaOyPxxSqdf9v-tqTH4uAh4yk\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "kn6-c223DUU"
+            },
+            "snippet": {
+                "publishedAt": "2010-06-17T16:52:20.000Z",
+                "channelId": "UCe4LM_eKc9ywRmVuBm5pjQg",
+                "title": "B.o.B - Airplanes ft. Hayley Williams of Paramore [OFFICIAL VIDEO]",
+                "description": "Watch the best B.o.B music videos on YouTube here: http://www.youtube.com/playlist?list=PLakoz4isJL_kSGOMG8FONyR1QBak_27RP Listen to B.o.B on ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/kn6-c223DUU/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/kn6-c223DUU/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/kn6-c223DUU/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Atlantic Records",
+                "liveBroadcastContent": "none"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/3Ne3SnSzBi8GEJl_W3C1dsCWVi0\"",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "IoBP24I2lwA"
+            },
+            "snippet": {
+                "publishedAt": "2012-03-21T12:59:14.000Z",
+                "channelId": "UCpuvu8mrEO4jxjT6sRwE8tg",
+                "title": "B.o.B - So Good [Official Video]",
+                "description": "This Justin Francis-directed video was shot in Buenos Aires and is available in 3D exclusively on Nintendo Video! Get the Exclusive Deluxe CD Only at Target: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/IoBP24I2lwA/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/IoBP24I2lwA/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/IoBP24I2lwA/hqdefault.jpg",
                         "width": 480,
                         "height": 360
                     }
@@ -111,41 +140,5 @@ module.exports = (groupId) => ({
                 "liveBroadcastContent": "none"
             }
         }
-    },{
-        "type": "youtube",
-        "id": 4,
-        "track": {
-            "kind": "youtube#searchResult",
-            "etag": "\"I_8xdZu766_FSaexEaDXTIfEWc0/U0MhmW5mgkuFnbhs4ruQpCxg-JQ\"",
-            "id": {
-                "kind": "youtube#video",
-                "videoId": "42Y4mUyWmM0"
-            },
-            "snippet": {
-                "publishedAt": "2016-09-23T21:25:46.000Z",
-                "channelId": "UCpuvu8mrEO4jxjT6sRwE8tg",
-                "title": "B.o.B - War Witch - Official Video",
-                "description": "A.I.R. mixtape Get it here on http://www.datpiff.com/BoB-AIR-Art-Imitates-Reality-mixtape.800528.html and follow B.o.B Instagram @Bob Twitter @bobatl AIR is ...",
-                "thumbnails": {
-                    "default": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/default.jpg",
-                        "width": 120,
-                        "height": 90
-                    },
-                    "medium": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/mqdefault.jpg",
-                        "width": 320,
-                        "height": 180
-                    },
-                    "high": {
-                        "url": "https://i.ytimg.com/vi/42Y4mUyWmM0/hqdefault.jpg",
-                        "width": 480,
-                        "height": 360
-                    }
-                },
-                "channelTitle": "B.o.B",
-                "liveBroadcastContent": "none"
-            }
-        }
-    }]
-})
+    ]
+}

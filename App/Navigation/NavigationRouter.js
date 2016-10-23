@@ -5,20 +5,19 @@ import I18n from 'react-native-i18n'
 import homeActions from '../Redux/homeRedux';
 import {connect} from 'react-redux'
 import FacebookTabBar from './FacebookTabBar';
-// screens identified by the router
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {StyleSheet, Text, ScrollView, View} from 'react-native';
+import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
+import styles from './Styles/NavigationRouter.styles.js'
+import ShareMenu from 'react-native-share-menu';
+
+import SharePage from '../modules/sharePage';
 import PlScreen from '../modules/playlistPage'
 import MyGroups from '../modules/homePage/myGroups';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
-import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
-import styles from './Styles/NavigationRouter.styles.js'
-/* **************************
-* Documentation: https://github.com/aksonov/react-native-router-flux
-***************************/
-import SharePage from '../modules/sharePage';
-import ShareMenu from 'react-native-share-menu';
+
 
 const Tabs = {
   home: {
@@ -71,6 +70,7 @@ class _Router extends Component {
           <Scene
             duration={0}
             key="home"
+            initial
             sceneStyle={styles.mainContainer}
             component={_getHomePage}
             titleStyle={styles.navBar.title}
@@ -81,7 +81,6 @@ class _Router extends Component {
             duration={0}
             getTitle={(state) => state.groupName}
             component={PlScreen}
-            initial
             titleStyle={styles.navBar.title}
             navigationBarStyle={styles.navBar.container}/>
           <Scene

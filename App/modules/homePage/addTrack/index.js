@@ -5,10 +5,12 @@ import PlIconButton from '../../../Components/PlIconButton';
 import AddTrackActions from '../../../Redux/addTrackRedux';
 import PlSpinner from '../../../Components/PlSpinner';
 import {connect} from 'react-redux';
-import {get} from 'lodash';
+import {get, debounce} from 'lodash';
 import SuggestionList from './suggestionList';
+import PostTrackModal from '../../shared/postTrack';
+
 const DEBOUNCE_TIME = 700;
-const PLACEHOLDER = 'hi!';
+const PLACEHOLDER = 'Search Youtube for...';
 
 class AddTrackForm extends React.Component {
     constructor(props) {
@@ -16,13 +18,20 @@ class AddTrackForm extends React.Component {
         this._searchTxtChanged = this
             ._searchTxtChanged
             .bind(this);
-        this._searchClicked = this._searchClicked.bind(this);
+        this._searchClicked = this
+            ._searchClicked
+            .bind(this);
         this.state = {
             text: ''
         }
     }
 
     componentWillMount() {
+        this.fetchTracksDebounced = debounce(function (arg) {
+            this
+                .props
+                .fetchSuggestionsRequest(arg);
+        }, DEBOUNCE_TIME)
     }
 
     _searchClicked() {
@@ -33,30 +42,38 @@ class AddTrackForm extends React.Component {
 
     _searchTxtChanged(newText) {
         this.setState({text: newText});
+        this.fetchTracksDebounced(this.state.text)
     }
 
     render() {
         const {text} = this.state;
-        const {matches, isFetching} = this.props;
+        const {matches, isFetching, modal, showPostTrackModal, hidePostTrackModal} = this.props;
+        const matchesView = matches && !isFetching
+            ? (<SuggestionList onTrackSelected={showPostTrackModal} items={matches}/>)
+            : <View style={ styles.noMatches.container}>
+                <Text style={ styles.noMatches.text}>No Results...</Text>
+              </View>
+        const spinnerView = isFetching && <PlSpinner/>;
         return (
             <View style={styles.addTrackContainer}>
-                <View style={ styles.searchContainer}>
+                <View style={styles.searchContainer}>
                     <TextInput
-                        placeholder={ PLACEHOLDER }
+                        placeholder={PLACEHOLDER}
                         style={styles.searchTxt}
                         onChangeText={this._searchTxtChanged}
                         value={text}/>
-                    <PlIconButton 
-                        name="search"
-                        disabled={ isFetching }
-                        onPress={ this._searchClicked } />
                 </View>
-                { isFetching && <PlSpinner /> }
-                <View style={ styles.matchesContainer}>
-                { 
-                    matches && !isFetching &&
-                    <SuggestionList items={ matches } />
-                }
+                { matchesView }
+                { spinnerView }
+                <View style={styles.matchesContainer}>
+                    {matches && !isFetching && <SuggestionList onTrackSelected={showPostTrackModal} items={matches}/>
+}
+                    {modal.show && 
+                        <PostTrackModal 
+                            onClose={hidePostTrackModal}
+                            modalContext={modal}
+                        />
+}
                 </View>
             </View>
         )
@@ -65,8 +82,9 @@ class AddTrackForm extends React.Component {
 
 const mapStateToThis = ({addTrack}) => {
     return {
-        isFetching: addTrack.fetching, 
-        matches: get(addTrack, "data.items")
+        isFetching: addTrack.fetching,
+        matches: get(addTrack, "data.items"),
+        modal: addTrack.modal
     }
 }
 

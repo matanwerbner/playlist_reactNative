@@ -2,7 +2,8 @@ import React from 'react'
 import PlList from '../../../../Components/PlList';
 import { View, Text, Image } from 'react-native';
 import styles from './suggestionList.style';
-export default({items}) => {
+import {Actions} from 'react-native-router-flux'
+export default({items, onTrackSelected}) => {
     const _items = items.map((i) => ({
         id: i.id,
         thumbnail: i.snippet.thumbnails.medium,
@@ -18,7 +19,7 @@ export default({items}) => {
     }
     return (
         <PlList items={_items} 
-        onPress={() => {}} 
+        onPress={onTrackSelected} 
         renderRow={_renderRow}/>
     )
 }

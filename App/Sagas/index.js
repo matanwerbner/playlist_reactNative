@@ -35,5 +35,5 @@ export default function * root() {
   yield[takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
     takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
     takeLatest(MyGroupsTypes.FETCH_MY_GROUPS_REQUEST, fetchMyGroups, api),
-    takeLatest(AddTrackTypes.FETCH_SUGGESTIONS_REQUEST, fetchSuggestions, YoutubeApi)]
+    takeLatest(AddTrackTypes.FETCH_SUGGESTIONS_REQUEST, fetchSuggestions, api)]
 }

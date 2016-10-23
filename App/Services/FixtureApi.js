@@ -19,5 +19,9 @@ export default {
       ok: true,
       data: require('../Fixtures/myGroups.js')
     }
+  },
+
+  getSuggestions: () => {
+    return require('../Fixtures/search.json');
   }
 }

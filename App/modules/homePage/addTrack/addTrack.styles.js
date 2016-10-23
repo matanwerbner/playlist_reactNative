@@ -1,17 +1,26 @@
 import {StyleSheet} from 'react-native'
-import {ApplicationStyles, Metrics, Colors} from '../../../Themes/'
+import {ApplicationStyles, Metrics, Colors, Fonts} from '../../../Themes/'
 
-export default StyleSheet.create({
-  addTrackContainer: {
+export default {
+  addTrackContainer : {
     paddingVertical: 20
   },
-  searchTxt: {
-    height: 40,
-    flex: 1
-  },
-  searchContainer: {
-    flex: 1,
-    marginBottom: 20,
+  searchContainer : {
     flexDirection: 'row'
+  },
+  noMatches : {
+    container: {
+    },
+    text: {
+      textAlign: 'center',
+      justifyContent: 'center'
+    }
+  },
+  searchTxt : {
+    flex: 1,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    padding: 5,
+    ...Fonts.style.input
   }
-})
+}

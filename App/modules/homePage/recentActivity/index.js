@@ -28,8 +28,9 @@ class RecentActivity extends React.Component {
       .getPlaylists();
   }
 
-  _onItemClicked({group, track}) {
-    Actions.playlist({groupId: group.id, trackId: track.id, groupName: group.name});
+  _onItemClicked(item) {
+    const { group } = item;
+    Actions.playlist({groupId: group.id, trackId: item.id, groupName: group.name});
   }
 
   _onFilterChanged(newFilter) {}

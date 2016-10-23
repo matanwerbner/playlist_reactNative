@@ -6,6 +6,5 @@ export function * fetchMyGroups (api) {
   if (response.ok) {
     yield put(myGroupsActions.fetchMyGroupsSuccess(response.data));
   } else {
-   debugger;
   }
 }

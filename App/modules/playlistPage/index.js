@@ -11,7 +11,7 @@ import {Actions} from 'react-native-router-flux'
 // I18n
 import {find} from 'lodash'
 import I18n from 'react-native-i18n'
-import YoutubePlayer from './youtubePlayer'
+import PlTrackPlayer from '../../Components/PlTrackPlayer'
 var _ = require("lodash");
 class Playlist extends React.Component {
 
@@ -62,6 +62,7 @@ class Playlist extends React.Component {
 
   _onNext() {
     const {playlist} = this.props;
+    debugger;
     const currentItemIdx = _.findIndex(playlist.items, (i) => i.id == this.state.activeItem.id);
     this._loadVideo(playlist.items[currentItemIdx + 1])
   }
@@ -79,13 +80,14 @@ class Playlist extends React.Component {
   render() {
     const {playlist} = this.props;
     const _onItemPressed = (item) => {
-      this._loadVideo(item);
+      this._loadVideo(item.track);
     }
     return (
       <View style={styles.mainContainer}>
         <View style={styles.videoContainer}>
-          {this.state.activeItem && <YoutubePlayer
-            item={this.state.activeItem}
+          {this.state.activeItem && 
+            <PlTrackPlayer
+            item={this.state.activeItem.track}
             onError={this._onError}
             onNext={this._onNext}/>}
         </View>
