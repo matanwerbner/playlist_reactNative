@@ -83,7 +83,7 @@ class Playlist extends React.Component {
       this._loadVideo(item.track);
     }
     return (
-      <View style={styles.mainContainer}>
+      <View>
         <View style={styles.videoContainer}>
           {this.state.activeItem && 
             <PlTrackPlayer

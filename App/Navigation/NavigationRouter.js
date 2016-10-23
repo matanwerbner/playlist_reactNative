@@ -1,4 +1,4 @@
-import React , { Component } from 'react'
+import React, {Component} from 'react'
 import {Scene, Router, Reducer, Actions} from 'react-native-router-flux'
 
 import I18n from 'react-native-i18n'
@@ -18,7 +18,6 @@ import MyGroups from '../modules/homePage/myGroups';
 import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
-
 
 const Tabs = {
   home: {
@@ -67,34 +66,41 @@ class _Router extends Component {
   render() {
     return (
       <Router createReducer={reducerCreate}>
-        <Scene key="root" leftButtonIconStyle={{ tintColor: 'white' }}>
+        <Scene
+          key="root"
+          navigationBarStyle={styles.navBar.container}
+          titleStyle={styles.navBar.title}
+          leftButtonIconStyle={{
+          tintColor: 'white'
+        }}>
+        <Scene
+          duration={0}
+          key="home"
+          initial
+          component={_getHomePage}
+          sceneStyle={styles.mainContainer}
+          
+          title="HOME"/>
+        <Scene
+          key="playlist"
+          duration={0}
+          getTitle={(state) => state.groupName}
+          sceneStyle={styles.mainContainer}
+          
+          component={PlScreen} />
           <Scene
-            duration={0}
-            key="home"
-            initial
-            sceneStyle={styles.mainContainer}
-            component={_getHomePage}
-            titleStyle={styles.navBar.title}
-            navigationBarStyle={styles.navBar.container}
-            title="HOME"/>
-          <Scene
-            key="playlist"
-            duration={0}
-            getTitle={(state) => state.groupName}
-            component={PlScreen}
-            titleStyle={styles.navBar.title}
-            navigationBarStyle={styles.navBar.container}/>
-          <Scene
-            key="incomingShare"
-            component={ SharePage }  />
-          <Scene
-            key="postTrack"
-            component={ PostTrack }
-            titleStyle={styles.navBar.title}
-            navigationBarStyle={styles.navBar.container}
-            title="POST YOUR TRACK" />
-        </Scene>
-      </Router>
+          key="incomingShare"
+          sceneStyle={styles.mainContainer}
+          
+          component={SharePage}/>
+        <Scene
+          key="postTrack"
+          component={PostTrack}
+          sceneStyle={styles.mainContainer}
+          
+          title="POST YOUR TRACK"/>
+      </Scene>
+    </Router>
     )
   }
 }

@@ -17,7 +17,7 @@ class _PostTrackModal extends Component {
     const youtubeData = formatYoutubeData(this.props.track);
 
     return (
-      <View style={styles.mainContainer}>
+      <View>
           <View style={styles.modalContent}>
             <View style={styles.header.container}>
               <Text style={styles.header.text}>
