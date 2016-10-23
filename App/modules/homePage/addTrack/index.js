@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, TextInput} from 'react-native';
+import {Actions} from 'react-native-router-flux'
 import styles from './addTrack.styles';
 import PlIconButton from '../../../Components/PlIconButton';
 import AddTrackActions from '../../../Redux/addTrackRedux';
@@ -7,7 +8,6 @@ import PlSpinner from '../../../Components/PlSpinner';
 import {connect} from 'react-redux';
 import {get, debounce} from 'lodash';
 import SuggestionList from './suggestionList';
-import PostTrackModal from '../../shared/postTrack';
 
 const DEBOUNCE_TIME = 700;
 const PLACEHOLDER = 'Search Youtube for...';
@@ -17,9 +17,6 @@ class AddTrackForm extends React.Component {
         super(props);
         this._searchTxtChanged = this
             ._searchTxtChanged
-            .bind(this);
-        this._searchClicked = this
-            ._searchClicked
             .bind(this);
         this.state = {
             text: ''
@@ -34,25 +31,23 @@ class AddTrackForm extends React.Component {
         }, DEBOUNCE_TIME)
     }
 
-    _searchClicked() {
-
-        const {fetchSuggestionsRequest} = this.props;
-        fetchSuggestionsRequest(this.state.text);
-    }
-
     _searchTxtChanged(newText) {
         this.setState({text: newText});
         this.fetchTracksDebounced(this.state.text)
     }
 
+    _trackSelected(track) {
+        Actions.postTrack({track});
+    }
+
     render() {
         const {text} = this.state;
-        const {matches, isFetching, modal, showPostTrackModal, hidePostTrackModal} = this.props;
+        const {matches, isFetching, modal} = this.props;
         const matchesView = matches && !isFetching
-            ? (<SuggestionList onTrackSelected={showPostTrackModal} items={matches}/>)
-            : <View style={ styles.noMatches.container}>
-                <Text style={ styles.noMatches.text}>No Results...</Text>
-              </View>
+            ? (<SuggestionList onTrackSelected={this._trackSelected} items={matches}/>)
+            : <View style={styles.noMatches.container}>
+                <Text style={styles.noMatches.text}>No Results...</Text>
+            </View>
         const spinnerView = isFetching && <PlSpinner/>;
         return (
             <View style={styles.addTrackContainer}>
@@ -63,17 +58,10 @@ class AddTrackForm extends React.Component {
                         onChangeText={this._searchTxtChanged}
                         value={text}/>
                 </View>
-                { matchesView }
-                { spinnerView }
+                {spinnerView}
                 <View style={styles.matchesContainer}>
-                    {matches && !isFetching && <SuggestionList onTrackSelected={showPostTrackModal} items={matches}/>
-}
-                    {modal.show && 
-                        <PostTrackModal 
-                            onClose={hidePostTrackModal}
-                            modalContext={modal}
-                        />
-}
+
+                    {matchesView}
                 </View>
             </View>
         )
@@ -83,8 +71,7 @@ class AddTrackForm extends React.Component {
 const mapStateToThis = ({addTrack}) => {
     return {
         isFetching: addTrack.fetching,
-        matches: get(addTrack, "data.items"),
-        modal: addTrack.modal
+        matches: get(addTrack, "data.items")
     }
 }
 

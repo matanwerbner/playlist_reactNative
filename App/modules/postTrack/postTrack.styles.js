@@ -1,10 +1,9 @@
-import {ApplicationStyles, Metrics, Colors, Fonts} from '../../../Themes';
-
-
+import {ApplicationStyles, Metrics, Colors, Fonts} from '../../Themes';
 
 export default {
-    modalContainer: {
-
+    mainContainer: {
+        alignItems: "center",
+        flex: 1
     },
     modalContent: {
         paddingVertical: 10,
@@ -17,12 +16,12 @@ export default {
             flex: 1
         },
         text: {
-            ...Fonts.style.h4
+            ...Fonts.style.h6
         }
     },
     body: {
         container: {
-
+            marginTop: 5
         },
         header: {
             ...Fonts.style.description,
@@ -32,5 +31,6 @@ export default {
             height: 150,
             marginTop: 5
         }
-    }
+    },
+     ...ApplicationStyles.screen
 }

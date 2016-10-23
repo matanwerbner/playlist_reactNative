@@ -15,7 +15,7 @@ export default class _YoutubePlayer extends Component {
     }
 
     _onReady() {
-        this.setState({play: true})
+        this.setState({play: this.props.autoplay})
     }
 
     render() {

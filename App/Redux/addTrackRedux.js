@@ -14,9 +14,7 @@ export const INITIAL_STATE = Immutable({
 const { Types, Creators } = createActions({
   fetchSuggestionsRequest: ['text'],
   fetchSuggestionsSuccess: ['data'],
-  fetchSuggestionsFailed: ['error'],
-  showPostTrackModal: ['track'],
-  hidePostTrackModal: null
+  fetchSuggestionsFailed: ['error']
 });
 
 export const AddTrackTypes = Types
@@ -36,16 +34,8 @@ export const failure = state =>
 export const toggleFilter = (state, action) =>
   state.merge({ filter: { enabled: !state.search.enabled, value: null} })
 
-export const showPostTrackModal = (state, {track}) => {
-  return state.merge({ modal: { show: true, track }})
-}
-
-export const hidePostTrackModal = (state) => state.merge({ modal: {show: false }});
-
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_SUGGESTIONS_REQUEST]: request,
   [Types.FETCH_SUGGESTIONS_SUCCESS]: success,
-  [Types.FETCH_SUGGESTIONS_FAILED]: failure,
-  [Types.SHOW_POST_TRACK_MODAL]: showPostTrackModal,
-  [Types.HIDE_POST_TRACK_MODAL]: hidePostTrackModal
+  [Types.FETCH_SUGGESTIONS_FAILED]: failure
 })

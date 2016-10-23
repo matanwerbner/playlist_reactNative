@@ -15,6 +15,7 @@ import ShareMenu from 'react-native-share-menu';
 import SharePage from '../modules/sharePage';
 import PlScreen from '../modules/playlistPage'
 import MyGroups from '../modules/homePage/myGroups';
+import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
 
@@ -66,7 +67,7 @@ class _Router extends Component {
   render() {
     return (
       <Router createReducer={reducerCreate}>
-        <Scene key="root">
+        <Scene key="root" leftButtonIconStyle={{ tintColor: 'white' }}>
           <Scene
             duration={0}
             key="home"
@@ -86,6 +87,12 @@ class _Router extends Component {
           <Scene
             key="incomingShare"
             component={ SharePage }  />
+          <Scene
+            key="postTrack"
+            component={ PostTrack }
+            titleStyle={styles.navBar.title}
+            navigationBarStyle={styles.navBar.container}
+            title="POST YOUR TRACK" />
         </Scene>
       </Router>
     )
