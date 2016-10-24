@@ -24,10 +24,8 @@ class AddTrackForm extends React.Component {
     }
 
     componentWillMount() {
-        this.fetchTracksDebounced = debounce(function (arg) {
-            this
-                .props
-                .fetchSuggestionsRequest(arg);
+        this.fetchTracksDebounced = debounce((arg) => {
+            this.props.fetchSuggestionsRequest(arg);
         }, DEBOUNCE_TIME)
     }
 

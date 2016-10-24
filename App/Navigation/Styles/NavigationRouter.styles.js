@@ -21,5 +21,19 @@ export default {
       color: Colors.snow
     }
   },
+  tabIcon: {
+    selected: {
+       width: 30,
+       height: 30,
+       color: '#fff'
+    },
+    default: {
+      width: 30,
+      height: 30
+    }
+  },
+  tabBar: {
+    backgroundColor: Colors.blue
+  },
    ...ApplicationStyles.screen
 }

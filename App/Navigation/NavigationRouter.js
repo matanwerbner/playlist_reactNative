@@ -19,29 +19,12 @@ import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
 
-const Tabs = {
-  home: {
-    icon: "update",
-    text: "RECENT UPDATES"
-  },
-  groups: {
-    icon: "group",
-    text: "MY GROUPS"
-  },
-  add: {
-    icon: "add",
-    text: "POST A TRACK"
-  }
+const TabIcon = ({selected, title, iconName}) => {
+  const style = selected
+    ? styles.tabIcon.selected
+    : styles.tabIcon.default;
+  return (<Icon name={iconName} style={style} size={30}/>);
 }
-
-const _getHomePage = () => <ScrollableTabView
-  initialPage={2}
-  tabBarPosition="bottom"
-  renderTabBar={() => <FacebookTabBar/>}>
-  <RecentActivity tabLabel={Tabs.home}/>
-  <MyGroups tabLabel={Tabs.groups}/>
-  <AddTrack tabLabel={Tabs.add}/>
-</ScrollableTabView>
 
 const _renderRightButton = () => {
   return <View style={{
@@ -64,43 +47,64 @@ class _Router extends Component {
   }
 
   render() {
+    const commonScene = {
+      navigationBarStyle: styles.navBar.container,
+      titleStyle: styles.navBar.title,
+      sceneStyle: styles.mainContainer
+    }
     return (
       <Router createReducer={reducerCreate}>
         <Scene
           key="root"
-          navigationBarStyle={styles.navBar.container}
-          titleStyle={styles.navBar.title}
           leftButtonIconStyle={{
           tintColor: 'white'
         }}>
-        <Scene
-          duration={0}
-          key="home"
-          initial
-          component={_getHomePage}
-          sceneStyle={styles.mainContainer}
-          
-          title="HOME"/>
-        <Scene
-          key="playlist"
-          duration={0}
-          getTitle={(state) => state.groupName}
-          sceneStyle={styles.mainContainer}
-          
-          component={PlScreen} />
           <Scene
-          key="incomingShare"
-          sceneStyle={styles.mainContainer}
-          
-          component={SharePage}/>
-        <Scene
-          key="postTrack"
-          component={PostTrack}
-          sceneStyle={styles.mainContainer}
-          
-          title="POST YOUR TRACK"/>
-      </Scene>
-    </Router>
+            duration={0}
+            key="home"
+            tabBarStyle={styles.tabBar}
+            tabs={true}
+            title="HOME">
+            <Scene
+              {... commonScene }
+              iconName="home"
+              icon={TabIcon}
+              key="recentActivity"
+              title="Recent Activity"
+              component={RecentActivity}/>
+            <Scene
+              {... commonScene }
+              icon={TabIcon}
+              iconName="group"
+              key="myGroups"
+              title="My Groups"
+              component={MyGroups}/>
+            <Scene
+              {... commonScene }
+              icon={TabIcon}
+              iconName="add"
+              key="addTrack"
+              title="Add Track"
+              component={AddTrack}/>
+
+          </Scene>
+          <Scene
+            key="playlist"
+            duration={0}
+            getTitle={(state) => state.groupName}
+            {... commonScene }
+            component={PlScreen}/>
+          <Scene
+            key="incomingShare"
+            sceneStyle={styles.mainContainer}
+            component={SharePage}/>
+          <Scene
+            key="postTrack"
+            component={PostTrack}
+            {... commonScene }
+            title="POST YOUR TRACK"/>
+        </Scene>
+      </Router>
     )
   }
 }

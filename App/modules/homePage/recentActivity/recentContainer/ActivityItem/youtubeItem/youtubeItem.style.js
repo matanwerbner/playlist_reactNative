@@ -36,8 +36,8 @@ export default {
         height: 150
     },
     arrowIcon: {
-        marginRight: 3,
-        color: Colors.bloodOrange
+        marginHorizontal: 6,
+        marginTop: 2
     },
     groupName: {
         color: Colors.bloodOrange
