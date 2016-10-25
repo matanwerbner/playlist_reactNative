@@ -1,6 +1,11 @@
 package com.playlistnative;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 
 public class MainActivity extends ReactActivity {
 

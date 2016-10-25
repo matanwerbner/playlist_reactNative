@@ -35,5 +35,13 @@ export default {
   tabBar: {
     backgroundColor: Colors.blue
   },
+  leftTitlebarButton: {
+    container: {
+      flexDirection: 'row'
+    },
+    menu: {
+      color: "#fff"
+    }
+  },
    ...ApplicationStyles.screen
 }

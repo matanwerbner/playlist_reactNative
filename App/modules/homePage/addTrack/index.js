@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {get, debounce} from 'lodash';
 import SuggestionList from './suggestionList';
 
-const DEBOUNCE_TIME = 700;
+const DEBOUNCE_TIME = 300;
 const PLACEHOLDER = 'Search Youtube for...';
 
 class AddTrackForm extends React.Component {

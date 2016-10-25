@@ -26,6 +26,10 @@ const TabIcon = ({selected, title, iconName}) => {
   return (<Icon name={iconName} style={style} size={30}/>);
 }
 
+const Menu = <View style={styles.leftTitlebarButton.container}>
+  <Icon name="menu" style={styles.leftTitlebarButton.menu} size={25}/>
+</View>;
+
 const _renderRightButton = () => {
   return <View style={{
     padding: 10,
@@ -50,7 +54,9 @@ class _Router extends Component {
     const commonScene = {
       navigationBarStyle: styles.navBar.container,
       titleStyle: styles.navBar.title,
-      sceneStyle: styles.mainContainer
+      sceneStyle: styles.mainContainer,
+      renderRightButton: () => Menu
+
     }
     return (
       <Router createReducer={reducerCreate}>
@@ -83,6 +89,7 @@ class _Router extends Component {
               {... commonScene }
               icon={TabIcon}
               iconName="add"
+              initial
               key="addTrack"
               title="Add Track"
               component={AddTrack}/>

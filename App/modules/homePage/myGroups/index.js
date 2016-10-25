@@ -25,9 +25,12 @@ class MyGroups extends React.Component {
         if (!myGroups) {
             return <View/>
         }
-        return (<GroupListContainer
+        return (
+            <ScrollView>
+            <GroupListContainer
             onGroupClicked={this._onGroupClicked}
-            myGroups={myGroups}/>)
+            myGroups={myGroups}/>
+            </ScrollView>)
     }
 }
 

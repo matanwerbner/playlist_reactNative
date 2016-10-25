@@ -1,36 +1,52 @@
 import {ApplicationStyles, Metrics, Colors, Fonts} from '../../Themes';
 
 export default {
-    mainContainer: {
+    mainContainer : {
         alignItems: "center",
-        flex: 1
-    },
-    modalContent: {
-        paddingVertical: 10,
+        flex: 1,
         paddingHorizontal: 20
     },
-    header: {
+    header : {
         container: {
+            paddingVertical: 10,
             flexDirection: 'row',
-            justifyContent: 'space-between',
-            flex: 1
+            justifyContent: 'flex-start'
         },
         text: {
+            flex: 1,
+            color: Colors.blue,
             ...Fonts.style.h6
         }
     },
-    body: {
+    body : {
         container: {
-            marginTop: 5
+            marginTop: 5,
+            flex: 1
         },
         header: {
-            ...Fonts.style.description,
+            ...Fonts.style.description
         },
         thumbnail: {
             width: 320,
             height: 150,
-            marginTop: 5
+            marginTop: 5,
+            marginBottom: 15
         }
     },
-     ...ApplicationStyles.screen
+    groupsContainer : {
+        flex: 1,
+        padding: 5
+    },
+    footer : {
+        container: {
+            paddingVertical: 25,
+            flexDirection: 'row',
+        },
+        btnsContainer: {
+            flex: 1,
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+            alignItems: 'center'
+        }
+    }
 }

@@ -12,6 +12,7 @@ import {HomeTypes} from '../Redux/homeRedux';
 import {PlTypes} from '../Redux/playlistRedux';
 import {MyGroupsTypes} from '../Redux/myGroupsRedux';
 import {AddTrackTypes} from '../Redux/addTrackRedux';
+import {PostTrackTypes} from '../Redux/postTrackRedux';
 /* ------------- Sagas ------------- */
 
 // import { startup } from './StartupSagas' import { login } from './LoginSagas'
@@ -19,8 +20,8 @@ import {AddTrackTypes} from '../Redux/addTrackRedux';
 import {getPlaylists} from './homeSagas';
 import {getPlaylist, setPlayingItemRequest} from './playlistSagas'
 import {fetchMyGroups} from './myGroupsSagas';
-
 import {fetchSuggestions} from './addTrackSagas';
+import {fetchGroups, postTrackRequest} from './postTrackSagas';
 /* ------------- API ------------- */
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -32,8 +33,13 @@ const api = DebugSettings.useFixtures
 /* ------------- Connect Types To Sagas ------------- */
 
 export default function * root() {
-  yield[takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
-    takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
-    takeLatest(MyGroupsTypes.FETCH_MY_GROUPS_REQUEST, fetchMyGroups, api),
-    takeLatest(AddTrackTypes.FETCH_SUGGESTIONS_REQUEST, fetchSuggestions, api)]
+  while (true) {
+
+    yield[takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
+      takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
+      takeLatest(MyGroupsTypes.FETCH_MY_GROUPS_REQUEST, fetchMyGroups, api),
+      takeLatest(AddTrackTypes.FETCH_SUGGESTIONS_REQUEST, fetchSuggestions, api),
+      takeLatest(PostTrackTypes.FETCH_GROUPS_REQUEST, fetchGroups, api),
+      takeLatest(PostTrackTypes.POST_TRACK_REQUEST, postTrackRequest, api)]
+  }
 }
