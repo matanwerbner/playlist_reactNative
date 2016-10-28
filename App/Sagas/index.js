@@ -1,4 +1,4 @@
-import {takeLatest} from 'redux-saga'
+import {takeEvery} from 'redux-saga'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugSettings from '../Config/DebugSettings'
@@ -13,6 +13,7 @@ import {PlTypes} from '../Redux/playlistRedux';
 import {MyGroupsTypes} from '../Redux/myGroupsRedux';
 import {AddTrackTypes} from '../Redux/addTrackRedux';
 import {PostTrackTypes} from '../Redux/postTrackRedux';
+import {LoggedInUserTypes} from '../Redux/loggedInUserRedux';
 /* ------------- Sagas ------------- */
 
 // import { startup } from './StartupSagas' import { login } from './LoginSagas'
@@ -22,6 +23,8 @@ import {getPlaylist, setPlayingItemRequest} from './playlistSagas'
 import {fetchMyGroups} from './myGroupsSagas';
 import {fetchSuggestions} from './addTrackSagas';
 import {fetchGroups, postTrackRequest} from './postTrackSagas';
+import {loginRequest, loginSuccess} from './loggedInUserSagas';
+
 /* ------------- API ------------- */
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -33,13 +36,13 @@ const api = DebugSettings.useFixtures
 /* ------------- Connect Types To Sagas ------------- */
 
 export default function * root() {
-  while (true) {
-
-    yield[takeLatest(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
-      takeLatest(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
-      takeLatest(MyGroupsTypes.FETCH_MY_GROUPS_REQUEST, fetchMyGroups, api),
-      takeLatest(AddTrackTypes.FETCH_SUGGESTIONS_REQUEST, fetchSuggestions, api),
-      takeLatest(PostTrackTypes.FETCH_GROUPS_REQUEST, fetchGroups, api),
-      takeLatest(PostTrackTypes.POST_TRACK_REQUEST, postTrackRequest, api)]
-  }
+    yield[takeEvery(HomeTypes.PLAYLISTS_REQUEST, getPlaylists, api),
+      takeEvery(PlTypes.PLAYLIST_REQUEST, getPlaylist, api),
+      takeEvery(MyGroupsTypes.FETCH_MY_GROUPS_REQUEST, fetchMyGroups, api),
+      takeEvery(AddTrackTypes.FETCH_SUGGESTIONS_REQUEST, fetchSuggestions, api),
+      takeEvery(PostTrackTypes.FETCH_GROUPS_REQUEST, fetchGroups, api),
+      takeEvery(PostTrackTypes.POST_TRACK_REQUEST, postTrackRequest, api),
+      takeEvery(LoggedInUserTypes.LOGIN_REQUEST, loginRequest),
+      takeEvery(LoggedInUserTypes.LOGIN_SUCCESS,loginSuccess)]
+  
 }

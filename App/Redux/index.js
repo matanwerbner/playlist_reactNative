@@ -9,7 +9,8 @@ export default () => {
     playlistPage: require('./playlistRedux').reducer,
     myGroups: require('./myGroupsRedux').reducer,
     addTrack: require('./addTrackRedux').reducer,
-    postTrack: require('./postTrackRedux').reducer
+    postTrack: require('./postTrackRedux').reducer,
+    loggedInUser: require('./loggedInUserRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

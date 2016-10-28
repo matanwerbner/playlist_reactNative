@@ -11,24 +11,17 @@ export default({item, onPress}) => {
     const {snippet} = item.data.track;
     return (
         <View style={styles.itemContainer}>
+            <Image
+                style={styles.image}
+                source={{
+                uri: snippet.thumbnails.default.url
+            }}/>
             <View style={styles.titleContainer}>
                 <PlText style={styles.trackTitle}>{snippet.title}</PlText>
             </View>
-            <View style={styles.imageContainer}>
-                <Image
-                    style={styles.image}
-                    source={{
-                    uri: snippet.thumbnails.default.url
-                }}/>
-                <View style={styles.playArrowContainer}>
-                    <Icon style={styles.playArrow} size={35} name="play-arrow"/>
-                </View>
-            </View>
+            <Icon style={styles.arrowIcon} name="arrow-forward"/>
 
             <View style={styles.subTitleContainer}>
-                <PlText style={styles.userName}>
-                    {`${user.name}`}</PlText>
-                <Icon style={styles.arrowIcon} name="arrow-forward"/>
                 <PlText style={styles.groupName}>{item.group.name}</PlText>
             </View>
         </View>

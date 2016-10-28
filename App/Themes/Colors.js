@@ -23,7 +23,8 @@ const colors = {
   success: {
     text: '#4F8A10',
     background: '#DFF2BF'
-  }
+  },
+  pink: '#EC407A'
 }
 
 export default colors

@@ -7,11 +7,11 @@ import {connect} from 'react-redux'
 import FacebookTabBar from './FacebookTabBar';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {StyleSheet, Text, ScrollView, View} from 'react-native';
+import {StyleSheet, Text, ScrollView, View, Image} from 'react-native';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import styles from './Styles/NavigationRouter.styles.js'
 import ShareMenu from 'react-native-share-menu';
-
+import PlAuthenticatedPage from '../Components/PlAuthenticatedPage';
 import SharePage from '../modules/sharePage';
 import PlScreen from '../modules/playlistPage'
 import MyGroups from '../modules/homePage/myGroups';
@@ -19,6 +19,7 @@ import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
 
+const RouterWithRedux = connect()(Router);
 const TabIcon = ({selected, title, iconName}) => {
   const style = selected
     ? styles.tabIcon.selected
@@ -30,11 +31,13 @@ const Menu = <View style={styles.leftTitlebarButton.container}>
   <Icon name="menu" style={styles.leftTitlebarButton.menu} size={25}/>
 </View>;
 
-const _renderRightButton = () => {
-  return <View style={{
-    padding: 10,
-    backgroundColor: 'green'
-  }}><Icon name="add"/></View>
+const Logo = <View style={ styles.navBar.logoContainer}>
+<Text style={ styles.navBar.logoText}>GROUPIES</Text>
+<Image size={20} style={styles.navBar.logoImage} source={require('../Images/logo.png')} />
+</View>
+
+const Authenticated = (component) => {
+  return <PlAuthenticatedPage>{ component }</PlAuthenticatedPage>;
 }
 
 class _Router extends Component {
@@ -55,11 +58,12 @@ class _Router extends Component {
       navigationBarStyle: styles.navBar.container,
       titleStyle: styles.navBar.title,
       sceneStyle: styles.mainContainer,
-      renderRightButton: () => Menu
-
+      renderTitle: () => Logo,
+      renderLeftButton: () => Menu,
+      leftButtonIconStyle: styles.navBar.leftButtonColor
     }
     return (
-      <Router createReducer={reducerCreate}>
+      <RouterWithRedux createReducer={reducerCreate}>
         <Scene
           key="root"
           leftButtonIconStyle={{
@@ -75,6 +79,7 @@ class _Router extends Component {
               {... commonScene }
               iconName="home"
               icon={TabIcon}
+              initial
               key="recentActivity"
               title="Recent Activity"
               component={RecentActivity}/>
@@ -84,12 +89,11 @@ class _Router extends Component {
               iconName="group"
               key="myGroups"
               title="My Groups"
-              component={MyGroups}/>
+              component={() => Authenticated(<MyGroups/>)}/>
             <Scene
               {... commonScene }
               icon={TabIcon}
               iconName="add"
-              initial
               key="addTrack"
               title="Add Track"
               component={AddTrack}/>
@@ -111,7 +115,7 @@ class _Router extends Component {
             {... commonScene }
             title="POST YOUR TRACK"/>
         </Scene>
-      </Router>
+      </RouterWithRedux>
     )
   }
 }

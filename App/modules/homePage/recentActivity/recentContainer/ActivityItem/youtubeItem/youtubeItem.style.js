@@ -3,17 +3,18 @@ import Colors from '../../../../../../Themes/Colors';
 export default {
 
     itemContainer: {
-        flexDirection: 'column',
+        flexDirection: 'row',
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center'
     },
     titleContainer: {
-        flexDirection: 'row'
+        flex: 0.5,
     },
     subTitleContainer: {
-        flexDirection: 'row',
+        flex: 0.5,
+        marginLeft: 10,
         alignItems: 'center',
-        justifyContent: 'flex-end'
     },
     imageContainer: {
         alignItems: 'center',
@@ -32,8 +33,9 @@ export default {
         justifyContent: 'center'
     },
     image: {
-        width: 260,
-        height: 150
+        marginRight: 10,
+        width: 50,
+        height: 50
     },
     arrowIcon: {
         marginHorizontal: 6,

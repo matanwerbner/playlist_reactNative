@@ -1,4 +1,4 @@
-package com.playlistnative;
+package com.groupies;
 
 import android.app.Application;
 import android.util.Log;
@@ -12,7 +12,7 @@ import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import java.util.Arrays;
 import java.util.List;
 import com.meedan.ShareMenuPackage;
-
+import com.magus.fblogin.FacebookLoginPackage;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -26,7 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new ReactNativeYouTube(),
-          new ShareMenuPackage()
+          new ShareMenuPackage(),
+          new FacebookLoginPackage()
       );
     }
   };

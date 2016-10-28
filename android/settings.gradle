@@ -1,4 +1,4 @@
-rootProject.name = 'playlistNative'
+rootProject.name = 'groupies'
 
 include ':app'
 include ':react-native-vector-icons'
@@ -15,3 +15,5 @@ include ':RCTYouTube', ':app'
 project(':RCTYouTube').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-youtube/RCTYouTube')
 include ':react-native-share-menu', ':app'
 project(':react-native-share-menu').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-share-menu/android')
+include ':react-native-facebook-login'
+project(':react-native-facebook-login').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-facebook-login/android')

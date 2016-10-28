@@ -1,4 +1,4 @@
-import {Colors, ApplicationStyles} from '../../Themes/'
+import {Colors, ApplicationStyles, Fonts} from '../../Themes/'
 
 export default {
   container : {
@@ -15,7 +15,30 @@ export default {
   },
   navBar : {
     container: {
-      backgroundColor: Colors.blue
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      backgroundColor: Colors.snow
+    },
+    leftButtonColor: {
+      tintColor: Colors.blue
+    },
+    logoImage: {
+      width:60,
+      height: 60,
+      resizeMode: 'contain'
+    },
+    logoText: {
+      marginRight: 8,
+      ...Fonts.style.h5,
+      color: Colors.blue
+    },
+    logoContainer: {
+      paddingRight: 20,
+      flexDirection: 'row',
+      flex: 1,
+      maxWidth: 200,
+      justifyContent: 'space-between',
+      alignItems:'center'
     },
     title: {
       color: Colors.snow
@@ -37,10 +60,13 @@ export default {
   },
   leftTitlebarButton: {
     container: {
+      alignItems: 'center',
+      justifyContent: 'center',
       flexDirection: 'row'
     },
     menu: {
-      color: "#fff"
+      tintColor: Colors.blue,
+      color: Colors.blue
     }
   },
    ...ApplicationStyles.screen
