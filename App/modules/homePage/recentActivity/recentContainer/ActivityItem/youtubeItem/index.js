@@ -16,13 +16,19 @@ export default({item, onPress}) => {
                 source={{
                 uri: snippet.thumbnails.default.url
             }}/>
-            <View style={styles.titleContainer}>
-                <PlText style={styles.trackTitle}>{snippet.title}</PlText>
-            </View>
-            <Icon style={styles.arrowIcon} name="arrow-forward"/>
-
-            <View style={styles.subTitleContainer}>
-                <PlText style={styles.groupName}>{item.group.name}</PlText>
+            <View style={styles.textContainer}> 
+                <PlText containerStyle={{ flex: 1 }} style={styles.trackTitle}>{snippet.title}</PlText>
+                <PlText  style={styles.groupName}>{item.group.name}</PlText>
+           </View>
+            <View style={ styles.statsContainer}>
+                <View style={ styles.statContainer}>
+                <Icon size={15} name="play-arrow" style={ styles.statsIcon} />
+                <PlText style={ styles.statText }>50</PlText>
+                </View>
+                <View style={ styles.statContainer}>
+                <Icon size={15} name="grade" style={ styles.statsIcon} />
+                <PlText style={ styles.statText }>50</PlText>
+                </View>
             </View>
         </View>
     )

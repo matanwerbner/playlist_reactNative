@@ -18,6 +18,7 @@ import MyGroups from '../modules/homePage/myGroups';
 import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
+import CreateGroup from '../modules/createGroup';
 
 const RouterWithRedux = connect()(Router);
 const TabIcon = ({selected, title, iconName}) => {
@@ -31,13 +32,16 @@ const Menu = <View style={styles.leftTitlebarButton.container}>
   <Icon name="menu" style={styles.leftTitlebarButton.menu} size={25}/>
 </View>;
 
-const Logo = <View style={ styles.navBar.logoContainer}>
-<Text style={ styles.navBar.logoText}>GROUPIES</Text>
-<Image size={20} style={styles.navBar.logoImage} source={require('../Images/logo.png')} />
+const Logo = <View style={styles.navBar.logoContainer}>
+  <Text style={styles.navBar.logoText}>GROUPIES</Text>
+  <Image
+    size={20}
+    style={styles.navBar.logoImage}
+    source={require('../Images/logo.png')}/>
 </View>
 
 const Authenticated = (component) => {
-  return <PlAuthenticatedPage>{ component }</PlAuthenticatedPage>;
+  return <PlAuthenticatedPage>{component}</PlAuthenticatedPage>;
 }
 
 class _Router extends Component {
@@ -79,7 +83,6 @@ class _Router extends Component {
               {... commonScene }
               iconName="home"
               icon={TabIcon}
-              initial
               key="recentActivity"
               title="Recent Activity"
               component={RecentActivity}/>
@@ -89,6 +92,7 @@ class _Router extends Component {
               iconName="group"
               key="myGroups"
               title="My Groups"
+              initial
               component={() => Authenticated(<MyGroups/>)}/>
             <Scene
               {... commonScene }
@@ -96,7 +100,8 @@ class _Router extends Component {
               iconName="add"
               key="addTrack"
               title="Add Track"
-              component={AddTrack}/>
+              component={(props) => Authenticated(<AddTrack {...props} />)
+            }/>
 
           </Scene>
           <Scene
@@ -111,9 +116,15 @@ class _Router extends Component {
             component={SharePage}/>
           <Scene
             key="postTrack"
-            component={PostTrack}
+            component={(props) => Authenticated(<PostTrack { ...props } />)}
             {... commonScene }
             title="POST YOUR TRACK"/>
+          <Scene
+            key="createGroup"
+            initial
+            component={() => Authenticated(<CreateGroup/>)}
+            {...commonScene}
+            title="CREATE GROUP"/>
         </Scene>
       </RouterWithRedux>
     )

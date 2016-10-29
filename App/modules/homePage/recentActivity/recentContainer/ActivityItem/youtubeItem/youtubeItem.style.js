@@ -1,4 +1,4 @@
-import Colors from '../../../../../../Themes/Colors';
+import { Colors, Fonts } from '../../../../../../Themes';
 
 export default {
 
@@ -8,13 +8,10 @@ export default {
         justifyContent: 'center',
         alignItems: 'center'
     },
-    titleContainer: {
-        flex: 0.5,
-    },
-    subTitleContainer: {
-        flex: 0.5,
-        marginLeft: 10,
-        alignItems: 'center',
+    textContainer: {
+        flex: 1,
+        paddingVertical: 5,
+        justifyContent:'space-around'
     },
     imageContainer: {
         alignItems: 'center',
@@ -23,28 +20,33 @@ export default {
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    playArrowContainer: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     image: {
         marginRight: 10,
         width: 50,
         height: 50
     },
-    arrowIcon: {
-        marginHorizontal: 6,
-        marginTop: 2
-    },
     groupName: {
-        color: Colors.bloodOrange
+        color: Colors.pink,
+        ...Fonts.style.small,
     },
     trackTitle: {
         color: Colors.blue
+    },
+    statsContainer: {
+        width: 50,
+        height: 50,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
+    statsIcon: {
+        marginRight: 5
+    },
+    statContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    statText: {
+        ...Fonts.style.small
     }
 }

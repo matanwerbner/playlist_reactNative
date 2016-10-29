@@ -18,6 +18,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   profile: null,
   credentials: null,
+  userId: null,
   error: null,
   fetching: true,
   userNotFound: false

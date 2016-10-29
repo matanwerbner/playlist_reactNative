@@ -3,10 +3,10 @@ import Colors from '../../Themes/Colors';
 export default {
     btnStyle: {
         alignItems: 'center',
-        height: 35,
-        width: 35,
+        justifyContent: 'center',
         borderColor: Colors.blue,
-        justifyContent: 'center'
+        width: 35,
+        height: 35
     },
     btnDisabled: {
         opacity: 0.5

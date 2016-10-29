@@ -65,7 +65,6 @@ export default {
       flexDirection: 'row'
     },
     menu: {
-      tintColor: Colors.blue,
       color: Colors.blue
     }
   },
