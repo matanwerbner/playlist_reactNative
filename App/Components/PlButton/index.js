@@ -22,8 +22,10 @@ export default({
 
     return (
         <Button
+            disabledStyle={ styles.disabledStyle}
+            isDisabled={ disabled }
             activeOpacity={ 0.5 }
-            onPress={ (!disabled) && onPress}
+            onPress={ disabled ? () => {} : onPress}
             style={ {...styles.button, ...btnStyle, ...btnStyleForType.button}}
             textStyle={{ ...styles.text, ...textStyle, ...btnStyleForType.text}}>
             {children}

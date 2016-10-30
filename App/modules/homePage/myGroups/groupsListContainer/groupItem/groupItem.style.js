@@ -15,11 +15,19 @@ export default {
         },
         groupNameContainer: {
             flex: 1,
-            marginBottom: 10
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingRight: 20
         },
         groupName: {
             color: Colors.coal,
             ...Fonts.style.h5
+        },
+        editBtn: {
+            borderColor: Colors.bloodOrange
+        },
+        editIcon: {
+            color: Colors.bloodOrange
         }
     },
     image : {

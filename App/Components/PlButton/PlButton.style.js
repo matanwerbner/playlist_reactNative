@@ -5,5 +5,8 @@ export default {
     },
     button: {
         padding: 10
+    },
+    disabledStyle: {
+        opacity: 0.5
     }
 }

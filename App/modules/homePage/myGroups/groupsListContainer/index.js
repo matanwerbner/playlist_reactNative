@@ -3,25 +3,23 @@ import {View, Text} from 'react-native';
 import PlList from '../../../../Components/PlList';
 import PlText from '../../../../Components/PlText';
 import GroupItem from './groupItem';
-import CreateGroup from './createGroup';
 import styles from './groupListContainer.styles';
 import { Actions } from 'react-native-router-flux';
-export default({myGroups, onGroupClicked}) => {
+export default({myGroups, onGroupClicked, loggedInUserId, onEditGroup}) => {
 
-    const _renderRow = (item) => <GroupItem item={item} key={item.id}/>
+    const _renderRow = (item) => 
+        <GroupItem item={item} 
+          isEditable={ loggedInUserId == item.adminUserId } 
+          key={item.id}
+          onEditGroup={onEditGroup}/>
     const _onCreateGroup = () => {
-        Actions.createGroup();
+       // Actions.createGroup();
     }
     return (
-        <View style={{ flex: 1}}>
-            <View style={ styles.titleContainer}>
-                <CreateGroup onPress={_onCreateGroup}/>
-            </View>
             <View>
                 <PlList items={myGroups} 
                 renderRow={_renderRow} 
                 onPress={onGroupClicked}/>
             </View>
-        </View>
     )
 }

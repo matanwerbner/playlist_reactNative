@@ -24,7 +24,6 @@ class _PostTrack extends Component {
     }
 
     _doCreate() {
-        debugger;
         let value = this.refs.form.getValue();
         if (value) { // if validation fails, value will be null
             console.log(value); // value here is an instance of Person

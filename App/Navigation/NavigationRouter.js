@@ -18,7 +18,6 @@ import MyGroups from '../modules/homePage/myGroups';
 import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
 import RecentActivity from '../modules/homePage/recentActivity';
-import CreateGroup from '../modules/createGroup';
 
 const RouterWithRedux = connect()(Router);
 const TabIcon = ({selected, title, iconName}) => {
@@ -119,12 +118,6 @@ class _Router extends Component {
             component={(props) => Authenticated(<PostTrack { ...props } />)}
             {... commonScene }
             title="POST YOUR TRACK"/>
-          <Scene
-            key="createGroup"
-            initial
-            component={() => Authenticated(<CreateGroup/>)}
-            {...commonScene}
-            title="CREATE GROUP"/>
         </Scene>
       </RouterWithRedux>
     )

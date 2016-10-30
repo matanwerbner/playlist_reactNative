@@ -37,8 +37,8 @@ export default({
                     size={size}
                     name={name}
                     style={{
-                    ...iconStyle,
-                    ...styles.iconStyle
+                    ...styles.iconStyle,
+                    ...iconStyle
                 }}/> 
             </PlButton>
     )

@@ -5,8 +5,8 @@ import { View } from 'react-native'
 import styles from './PlIcon.styles.js';
 export default ({ name, size, text, textStyle, style }) => {
     return (
-        <View style={ Object.assign({}, style, styles.container)}>
-        <Icon name={name} size={size} />
+        <View style={ styles.container}>
+        <Icon style={ style} name={name} size={size} />
         {
             text &&
             <PlText style={ Object.assign({}, { fontSize: size }, textStyle)}>{ text }</PlText>
