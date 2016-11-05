@@ -37,11 +37,12 @@ class MyGroups extends React.Component {
     }
 
     _onCreate(group) {
-        debugger;
+       this.props.createGroupRequest(this.state.createGroup.groupName);
+       this.setState(Object.assign({}, this.state, { createGroup: {groupName: null, active: false} }));
     }
 
     render() {
-        const {myGroups} = this.props;
+        const {myGroups, loggedInUserId} = this.props;
         if (!myGroups) {
             return <View/>
         }
@@ -57,6 +58,7 @@ class MyGroups extends React.Component {
                     onSubmit={this._onCreate}
                     groupName={this.state.createGroup.groupName}
                     isActive={this.state.createGroup.active}
+                    loggedInUserId={ loggedInUserId }
                     />
                 </View>
                 <ScrollView>
@@ -80,7 +82,8 @@ const mapStateToThis = ({myGroups, loggedInUser }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchMyGroupsRequest: () => dispatch(myGroupsActions.fetchMyGroupsRequest())
+        fetchMyGroupsRequest: () => dispatch(myGroupsActions.fetchMyGroupsRequest()),
+        createGroupRequest: (name) => dispatch(myGroupsActions.createGroupRequest(name))
 
     }
 }

@@ -92,7 +92,7 @@ class _Router extends Component {
               key="myGroups"
               title="My Groups"
               initial
-              component={() => Authenticated(<MyGroups/>)}/>
+              component={() => <MyGroups/>}/>
             <Scene
               {... commonScene }
               icon={TabIcon}

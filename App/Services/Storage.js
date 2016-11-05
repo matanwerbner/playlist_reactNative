@@ -23,9 +23,7 @@ export const getLoggedInUser = () => {
     return _Storage
         .load({key: 'loggedInUser'})
         .catch(err => {
-            // any exception including data not found goes to catch()
-            console.warn(err.message);
-            switch (err.name) {
+             switch (err.name) {
                 case 'NotFoundError':
                     // TODO;
                     break;

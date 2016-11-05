@@ -8,3 +8,8 @@ export function * fetchMyGroups (api) {
   } else {
   }
 }
+
+export function * createGroup(api, action) {
+  const response = yield call(api.createGroup, action.groupName);
+  yield put(myGroupsActions.createGroupSuccess())
+}

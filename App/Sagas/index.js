@@ -20,7 +20,7 @@ import {LoggedInUserTypes} from '../Redux/loggedInUserRedux';
 // import { getTemperature } from './TemperatureSagas'
 import {getPlaylists} from './homeSagas';
 import {getPlaylist, setPlayingItemRequest} from './playlistSagas'
-import {fetchMyGroups} from './myGroupsSagas';
+import {fetchMyGroups, createGroup} from './myGroupsSagas';
 import {fetchSuggestions} from './addTrackSagas';
 import {fetchGroups, postTrackRequest} from './postTrackSagas';
 import {loginRequest, loginSuccess} from './loggedInUserSagas';
@@ -43,6 +43,7 @@ export default function * root() {
       takeEvery(PostTrackTypes.FETCH_GROUPS_REQUEST, fetchGroups, api),
       takeEvery(PostTrackTypes.POST_TRACK_REQUEST, postTrackRequest, api),
       takeEvery(LoggedInUserTypes.LOGIN_REQUEST, loginRequest),
-      takeEvery(LoggedInUserTypes.LOGIN_SUCCESS,loginSuccess)]
+      takeEvery(LoggedInUserTypes.LOGIN_SUCCESS,loginSuccess),
+      takeEvery(MyGroupsTypes.CREATE_GROUP_REQUEST, createGroup, api )]
   
 }

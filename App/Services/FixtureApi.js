@@ -23,5 +23,9 @@ export default {
 
   getSuggestions: () => {
     return require('../Fixtures/search.json');
+  },
+
+  createGroup: (groupName) => {
+    return {};
   }
 }
