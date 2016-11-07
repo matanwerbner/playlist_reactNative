@@ -13,7 +13,7 @@ const { Types, Creators } = createActions({
   fetchMyGroupsRequest: null,
   fetchMyGroupsSuccess: ['data'],
   createGroupRequest: ['groupName'],
-  createGroupSuccess: null
+  createGroupSuccess: ['result']
 });
 
 export const MyGroupsTypes = Types
@@ -29,7 +29,9 @@ export const success = (state, action) => {
 export const createRequest = (state) => 
    state.merge({ fetching: true})
 
-export const createSuccess = (state) => state.merge({ fetching: false})
+export const createSuccess = (state, action) => {
+  return state.merge({ fetching: false, data: [ action.result.data, ...state.data]})
+} 
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_MY_GROUPS_REQUEST]: request,

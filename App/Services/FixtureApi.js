@@ -25,7 +25,10 @@ export default {
     return require('../Fixtures/search.json');
   },
 
-  createGroup: (groupName) => {
-    return {};
+  createGroup: (groupName, adminId) => {
+     return {
+      ok: true,
+      data: require('../Fixtures/createGroup.js')(groupName, adminId)
+    }
   }
 }

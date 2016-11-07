@@ -18,17 +18,21 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   profile: null,
   credentials: null,
-  userId: null,
   error: null,
   fetching: true,
-  userNotFound: false
 })
 
 export const request = (state) => state.merge({ fetching: true })
 
 // we've successfully logged in
 export const success = (state, { profile, credentials }) => {
-  return state.merge({ fetching: false, error: null, profile, credentials, userNotFound: false, id: 2 })
+  return state.merge({ 
+    fetching: false, 
+    error: null, 
+    profile, 
+    credentials, 
+    userNotFound: false, 
+    id: 2 })
 }
 
 // we've had a problem logging in

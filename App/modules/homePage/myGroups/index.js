@@ -13,12 +13,12 @@ class MyGroups extends React.Component {
         this._onCreate = this
             ._onCreate
             .bind(this);
-            this.state = {
-                createGroup: {
-                    active: false,
-                    groupName: ''
-                }
+        this.state = {
+            createGroup: {
+                active: false,
+                groupName: ''
             }
+        }
     }
 
     componentDidMount() {
@@ -33,12 +33,19 @@ class MyGroups extends React.Component {
 
     _onEditGroup(group) {
         Actions.editGroup({groupId: group.id});
-   
+
     }
 
     _onCreate(group) {
-       this.props.createGroupRequest(this.state.createGroup.groupName);
-       this.setState(Object.assign({}, this.state, { createGroup: {groupName: null, active: false} }));
+        this
+            .props
+            .createGroupRequest(this.state.createGroup.groupName);
+        this.setState(Object.assign({}, this.state, {
+            createGroup: {
+                groupName: null,
+                active: false
+            }
+        }));
     }
 
     render() {
@@ -47,37 +54,39 @@ class MyGroups extends React.Component {
             return <View/>
         }
         return (
-            <View>
+
+            <ScrollView>
                 <View>
-                    <CreateGroup onActiveChange={(val) => 
-                        this.setState(Object.assign({}, this.state, { createGroup: {groupName: '', active: val} })) 
-                    }
-                    onGroupNameChange={ (val) => 
-                        this.setState(Object.assign({}, this.state, { createGroup: {...this.state.createGroup, groupName: val} })) 
-                    }
-                    onSubmit={this._onCreate}
-                    groupName={this.state.createGroup.groupName}
-                    isActive={this.state.createGroup.active}
-                    loggedInUserId={ loggedInUserId }
-                    />
+                    <CreateGroup
+                        onActiveChange={(val) => this.setState(Object.assign({}, this.state, {
+                        createGroup: {
+                            groupName: '',
+                            active: val
+                        }
+                    }))}
+                        onGroupNameChange={(val) => this.setState(Object.assign({}, this.state, {
+                        createGroup: {
+                            ...this.state.createGroup,
+                            groupName: val
+                        }
+                    }))}
+                        onSubmit={this._onCreate}
+                        groupName={this.state.createGroup.groupName}
+                        isActive={this.state.createGroup.active}
+                        loggedInUserId={loggedInUserId}/>
                 </View>
-                <ScrollView>
-                    <GroupListContainer 
-                        loggedInUserId={this.props.loggedInUserId} 
-                        onGroupClicked={this._onGroupClicked} 
-                        myGroups={myGroups}
-                        onEditGroup={this._onEditGroup}/>
-                </ScrollView>
-            </View>
+                <GroupListContainer
+                    loggedInUserId={this.props.loggedInUserId}
+                    onGroupClicked={this._onGroupClicked}
+                    myGroups={myGroups}
+                    onEditGroup={this._onEditGroup}/>
+            </ScrollView>
         )
     }
 }
 
-const mapStateToThis = ({myGroups, loggedInUser }) => {
-    return {
-        myGroups: myGroups.data,
-        loggedInUserId: loggedInUser.id
-    }
+const mapStateToThis = ({myGroups, loggedInUser}) => {
+    return {myGroups: myGroups.data, loggedInUserId: loggedInUser.id}
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,4 +1,4 @@
-import { put, call } from 'redux-saga/effects'
+import { put, call, select} from 'redux-saga/effects'
 import myGroupsActions from '../Redux/myGroupsRedux';
 // attempts to login
 export function * fetchMyGroups (api) {
@@ -9,7 +9,10 @@ export function * fetchMyGroups (api) {
   }
 }
 
+const getAdminId = state => state.loggedInUser.id;
+
 export function * createGroup(api, action) {
-  const response = yield call(api.createGroup, action.groupName);
-  yield put(myGroupsActions.createGroupSuccess())
+  const adminId = yield select(getAdminId)
+  const response = yield call(api.createGroup, action.groupName, adminId);
+  yield put(myGroupsActions.createGroupSuccess(response))
 }
