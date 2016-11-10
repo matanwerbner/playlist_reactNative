@@ -5,12 +5,13 @@ import PlText from '../../../../Components/PlText';
 import GroupItem from './groupItem';
 import styles from './groupListContainer.styles';
 import { Actions } from 'react-native-router-flux';
-export default({myGroups, onGroupClicked, loggedInUserId, onEditGroup}) => {
+export default({myGroups, onGroupClicked, loggedInUserId, onEditGroup, onShareGroup}) => {
 
     const _renderRow = (item) => 
         <GroupItem item={item} 
           isEditable={ loggedInUserId == item.adminUserId } 
           key={item.id}
+          onShareGroup={onShareGroup}
           onEditGroup={onEditGroup}/>
     const _onCreateGroup = () => {
        // Actions.createGroup();

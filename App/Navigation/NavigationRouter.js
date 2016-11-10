@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Scene, Router, Reducer, Actions} from 'react-native-router-flux'
-
+import { Linking } from 'react-native';
 import I18n from 'react-native-i18n'
 import homeActions from '../Redux/homeRedux';
 import {connect} from 'react-redux'
@@ -17,6 +17,7 @@ import PlScreen from '../modules/playlistPage'
 import MyGroups from '../modules/homePage/myGroups';
 import PostTrack from '../modules/postTrack';
 import AddTrack from '../modules/homePage/addTrack';
+import EditGroup from '../modules/editGroup';
 import RecentActivity from '../modules/homePage/recentActivity';
 
 const RouterWithRedux = connect()(Router);
@@ -53,7 +54,18 @@ class _Router extends Component {
       if (text && text.length) {
         Actions.incomingShare({type: 'reset', text});
       }
-    })
+    });
+    const url = Linking
+      .getInitialURL()
+      .then(url => {
+        if (url) {
+          debugger;
+          // const route = url.replace(/.*?:\/\//g, "");
+          // this
+          //   ._navigator
+          //   .replace(this.state.routes[route]);
+        }
+      });
   }
 
   render() {
@@ -78,9 +90,10 @@ class _Router extends Component {
             tabBarStyle={styles.tabBar}
             tabs={true}
             title="HOME">
+
             <Scene
               {... commonScene }
-              iconName="home"
+              iconName="update"
               icon={TabIcon}
               key="recentActivity"
               title="Recent Activity"
@@ -99,8 +112,7 @@ class _Router extends Component {
               iconName="add"
               key="addTrack"
               title="Add Track"
-              component={(props) => Authenticated(<AddTrack {...props} />)
-            }/>
+              component={(props) => Authenticated(<AddTrack {...props}/>)}/>
 
           </Scene>
           <Scene
@@ -115,9 +127,14 @@ class _Router extends Component {
             component={SharePage}/>
           <Scene
             key="postTrack"
-            component={(props) => Authenticated(<PostTrack { ...props } />)}
+            component={(props) => Authenticated(<PostTrack { ...props }/>)}
             {... commonScene }
             title="POST YOUR TRACK"/>
+          <Scene
+            key="editGroup"
+            component={(props) => Authenticated(<EditGroup { ...props }/>)}
+            {... commonScene }
+            title="EDIT GROUP"/>
         </Scene>
       </RouterWithRedux>
     )

@@ -22,6 +22,11 @@ export default {
         groupName: {
             color: Colors.coal,
             ...Fonts.style.h5
+        }
+    },
+    groupAdmin : {
+        container: {
+            paddingHorizontal: 10
         },
         editBtn: {
             borderColor: Colors.bloodOrange

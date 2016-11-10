@@ -6,6 +6,7 @@ import PlList from '../../../Components/PlList'
 import {Actions} from 'react-native-router-flux'
 import GroupListContainer from './groupsListContainer';
 import CreateGroup from './createGroup';
+import Share, {ShareSheet, Button} from 'react-native-share';
 
 class MyGroups extends React.Component {
     constructor() {
@@ -13,6 +14,7 @@ class MyGroups extends React.Component {
         this._onCreate = this
             ._onCreate
             .bind(this);
+            this._onShareGroup = this._onShareGroup.bind(this);
         this.state = {
             createGroup: {
                 active: false,
@@ -32,7 +34,7 @@ class MyGroups extends React.Component {
     }
 
     _onEditGroup(group) {
-        Actions.editGroup({groupId: group.id});
+        Actions.editGroup({group});
 
     }
 
@@ -48,8 +50,18 @@ class MyGroups extends React.Component {
         }));
     }
 
+    _onShareGroup(group) {
+        let shareOptions = {
+        title: "Playlist Group Invitation",
+        message: `Hello there, ${this.props.loggedInUser.profile.name} has invited you to join their group ${group.name}! click link to do it`,
+        url: "http://playlist.co.il/join-group/" + group.id,
+        subject: "Playlist Group Invitation" //  for email
+        };
+        Share.open(shareOptions);
+    }
+
     render() {
-        const {myGroups, loggedInUserId} = this.props;
+        const {myGroups, loggedInUser} = this.props;
         if (!myGroups) {
             return <View/>
         }
@@ -73,10 +85,11 @@ class MyGroups extends React.Component {
                         onSubmit={this._onCreate}
                         groupName={this.state.createGroup.groupName}
                         isActive={this.state.createGroup.active}
-                        loggedInUserId={loggedInUserId}/>
+                        loggedInUserId={loggedInUser.id}/>
                 </View>
                 <GroupListContainer
-                    loggedInUserId={this.props.loggedInUserId}
+                    onShareGroup={this._onShareGroup}
+                    loggedInUserId={this.props.loggedInUser.id}
                     onGroupClicked={this._onGroupClicked}
                     myGroups={myGroups}
                     onEditGroup={this._onEditGroup}/>
@@ -85,8 +98,10 @@ class MyGroups extends React.Component {
     }
 }
 
-const mapStateToThis = ({myGroups, loggedInUser}) => {
-    return {myGroups: myGroups.data, loggedInUserId: loggedInUser.id}
+const mapStateToThis = ({myGroups, loggedInUser = {}}) => {
+    return {
+        myGroups: myGroups.data, loggedInUser: loggedInUser
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
